@@ -1,0 +1,505 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #181818;
+  color: #fff;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.font-controls {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.sun {
+  display: none;
+  color: rgb(255, 255, 255);
+}
+
+.moon {
+  display: inline-block;
+  color: rgb(255, 255, 255);;
+}
+
+.font-controls button {
+  background: #220d0d;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.font-controls button:focus {
+  outline: 2px solid #0078d7;
+}
+
+.font-controls button:hover {
+  background: #444;
+}
+
+body.dark-mode .font-controls button {
+  background: #fff;
+  color: #181818;
+}
+
+body.dark-mode .font-controls button:hover {
+  background: #0078d7;
+}
+
+header {
+  background-color: black;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  width: 110px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+
+.search-barra {
+  flex: 1;
+  max-width: 450px;
+}
+
+.search-barra input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.search-barra input:focus {
+  box-shadow: 0 0 8px #0078d7;
+}
+
+#login_header {
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #login_header{
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#início_header {
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #início_header {
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  background: #0078d7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+  background: #0078d7;
+  transform: scale(1.05);
+}
+
+
+.font-darkmode-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.toggle-dark:hover {
+  color: #0078d7;
+  transform: rotate(15deg);
+}
+
+.font-controls button {
+  background: black;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.font-controls button:hover {
+  background: #0078d7;
+}
+
+.nav-principal {
+  background: #222;
+  text-align: center;
+  position: relative;
+  z-index: 100; 
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode header,
+body.dark-mode .nav-principal {
+  background: black;
+}
+
+body.dark-mode .search-barra input {
+  background: white;
+  color: black;
+}
+
+/* Containter cadastro */
+#formCadastro {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;           
+}
+
+#formCadastro h2 {
+    margin-bottom: 20px;
+    color:black;
+}
+
+#formCadastro label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    color:black;
+}
+
+#formCadastro input[type="text"],
+#formCadastro input[type="email"],
+#formCadastro input[type="password"],
+#formCadastro input[type="date"],
+#formCadastro input[type="number"],
+#formCadastro select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#formCadastro input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#formCadastro input[type="button"] {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#formCadastro input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+#formCadastro input[type="reset"] {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#formCadastro input[type="reset"]:hover {
+    background-color: #0056b3;
+}
+
+#formCadastro a:hover {
+    text-decoration: underline;
+}
+
+
+/* Modo escuro do Cadastro */
+
+body.dark-mode main {
+    background-color: black;
+}
+
+body.dark-mode #formCadastro {
+    background-color: #000000;
+    color: white;
+}
+
+body.dark-mode #formCadastro h2{
+  color: #d9d9d9
+}
+
+body.dark-mode #formCadastro label{
+  color: #d9d9d9
+}
+
+body.dark-mode #formCadastro input {
+    background-color: white;
+    border-color: #0078d7;
+    color: #f1f1f1;
+}
+
+body.dark-mode #formCadastro input[type="button"] {
+    background-color: #007bff;
+}
+
+body.dark-mode #formCadastro input[type="button"]:hover {
+    background-color: #0b5ed7;
+}
+
+body.dark-mode #formCadastro input[type="reset"] {
+    background-color: #007bff;
+}
+
+/*Rodapé*/
+.rodape {
+  background: black;
+}
+.formaspagamento-seguranca {
+  display: flex;
+  align-items: center;
+  gap: 40%;
+}
+.formaspagamento {
+  display: flex;
+  gap: 10%;
+  background-color: transparent;
+  margin-left: 10%;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 2%;
+}
+.formaspagamento img {
+  width: 40px;
+  height: 30px;
+  object-fit: contain;
+}
+.Siganos {
+  background-color: transparent;
+  margin-right: 10%;
+  border-radius: 50px;
+  padding-right: 50px;
+}
+.separator-line {
+ border: none;
+ border-top: 1px solid hsl(0, 0%, 73%);
+ margin: 20px 0;
+}
+.institucional-duvidas-cliente-Ajuda {
+  display: flex;
+  align-items: center;
+  gap: 10%;
+  margin-left: 10%;
+}
+.Siga-nos-login{
+ display: flex;
+ gap: 5%;
+ justify-content: center;
+ align-items: center;
+ background-color: rgb(13, 12, 12);
+}
+.Siga-nos-cadastro{
+ display: flex;
+ gap: 5%;
+ justify-content: center;
+ align-items: center;
+ background-color: rgb(13, 12, 12);
+}
+.textofinal {
+  padding: 1%;
+  text-align: center;
+  font-size: 0.8em;
+  color: white;
+  background-color: hsl(0, 2%, 11%);
+}
+
+/* Estilos para validação: erro (vermelho) e válido (verde) */
+#formCadastro input.erro {
+  border-color: #dc3545 !important; /* vermelho */
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+#formCadastro input.valido {
+  border-color: #28a745 !important; /* verde */
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.10);
+}
+
+/* Aplica também para selects e inputs numéricos */
+#formCadastro select.erro,
+#formCadastro textarea.erro,
+#formCadastro input[type="number"].erro {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+#formCadastro select.valido,
+#formCadastro textarea.valido,
+#formCadastro input[type="number"].valido {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.10);
+}
+
+/* Modo escuro */
+body.dark-mode #formCadastro input.erro {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.12);
+}
+
+body.dark-mode #formCadastro input.valido {
+  border-color: #51cf66 !important;
+  box-shadow: 0 0 0 3px rgba(81, 207, 102, 0.10);
+}
+
+/* Modal de erros */
+.modal-erro {
+  display: none;
+}
+.modal-erro.open {
+  display: block;
+}
+.modal-erro__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9998;
+}
+.modal-erro__dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: #000;
+  padding: 18px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: min(420px, 92%);
+}
+.modal-erro__dialog h3 { margin: 0 0 8px 0; }
+.modal-erro__dialog ul { margin: 8px 0 0 18px; color: #333; }
+.modal-erro__dialog .btn { padding: 6px 10px; }
+
+body.dark-mode .modal-erro__dialog {
+  background: #111;
+  color: #fff;
+}
+body.dark-mode .modal-erro__dialog ul { color: #ddd; }

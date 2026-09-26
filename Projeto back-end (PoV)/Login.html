@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> InfoMark login </title>
+        <link rel="stylesheet" href="CSS/CSSLogin.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+    </head>
+    <body>
+        <header>
+            <div class="header-topo">
+            <div class="logo">
+                <img src="img/Logo_preta.jpg" style="height:80px;" onclick="window.location.href='Index.html'">
+            </div>
+            <div class="search-barra">
+                <input type="search" name="procurar" placeholder="Pesquise o seu produto">
+            </div>
+            <div class="Cadastro">
+                <input type="button" id="cadastro_header" value="Cadastro" onclick="window.location.href='Cadastro.html'"> 
+            </div>
+            <div class="Início">
+                <input type="button" id="início_header" value="Início" onclick="window.location.href='Index.html'">
+            </div>
+            <div class="font-darkmode-controls">
+                <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                    <i class="bi bi-brightness-high-fill sun"></i>
+                    <i class="bi bi-moon-stars moon"></i>
+                </button>
+                <div class="font-controls">
+                    <button id="font-inc" title="Aumentar Fonte">
+                        <i class="bi bi-zoom-in"></i>
+                    </button>
+                    <button id="font-dec" title="Diminuir Fonte">
+                        <i class="bi bi-zoom-out"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </header>
+        </div>
+        <div class="login">
+            <form id="formLogin">
+                <h1>INFOMARK</h1>
+                <label>Login</label>
+
+                <label>E-mail:</label>
+                <input type="email" id="email" placeholder="Digite seu email" required>
+
+                <label>Senha:</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" minlength="6" required>
+
+                <input type="button" id="Login" value="Login" onclick="valida_localStorage()">
+                <input type="reset" id="limpar" value="Limpar tela">
+            </form>
+            <div class="rodape">
+            <br>
+            <div class="formaspagamento-seguranca">
+                <div class="formaspagamento">
+                    <img src="img/PIX.jpg" alt="Pix" >
+                    <img src="img/card_11378185.png" alt="Mastercard" >
+                    <img src="img/visa (1).png" alt="visa" >
+                    <img src="img/Boleto.png.jpg" alt="boleto" >
+                    <img src="img/nubank.png" alt="nubank" >
+                </div>
+                <div class="Siganos">
+                <img src="img/twitter (1).png" alt="Twitter ou X" style="width: 10%;" onclick="window.location.href='algumlugar'">
+                <img src="img/facebook (2).png" alt="Facebook" style="width: 10%;" onclick="window.location.href='algumlugar'">
+                <img src="img/youtube (1).png" alt="Youtube" style="width: 10%;" onclick="window.location.href='algumlugar'">
+                <img src="img/telegram (2).png" alt="Telegran" style="width: 10%;" onclick="window.location.href='algumlugar'">
+                <img src="img/discord (1).png" alt="Discord" style="width: 10%;" onclick="window.location.href='algumlugar'">
+            </div>
+            </div>
+        </div>
+        <script src="JS/JSLogin.js"></script>
+    </body>
+</html>
+

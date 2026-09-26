@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> InfoMark Erro 301 </title>
+        <link rel="stylesheet" href="CSS/CSSPágina_de_erro.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+    </head>
+    <body>
+        <header>
+          <div class="header-topo">
+          <div class="logo">
+              <img src="img/Logo_preta.jpg" style="height:80px;" onclick="window.location.href='Index.html'">
+          </div>
+          <div class="search-barra">
+              <input type="search" name="procurar" placeholder="Pesquise o seu produto">
+          </div>
+          <div class="Cadastro">
+              <input type="button" id="cadastro_header" value="Cadastro" onclick="window.location.href='Cadastro.html'"> 
+          </div>
+          <div class = "login">
+            <input type="button" id="login_header" value="Login" onclick="window.location.href='Login.html'"> 
+          </div>
+          <div class="font-darkmode-controls">
+            <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                <i class="bi bi-brightness-high-fill sun"></i>
+                <i class="bi bi-moon-stars moon"></i>
+            </button>
+            <div class="font-controls">
+                <button id="font-inc" title="Aumentar Fonte">
+                    <i class="bi bi-zoom-in"></i>
+                </button>
+                <button id="font-dec" title="Diminuir Fonte">
+                    <i class="bi bi-zoom-out"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+    <main>
+        <div class="erro-caixa">
+            <h1>Ops! Algo deu errado</h1>
+            <p>Não conseguimos processar sua solicitação. Verifique o endereço ou tente novamente mais tarde.</p>
+            <button id="btn-voltar">Voltar à página anterior</button>
+        </div>
+    </main>
+
+        <script src="JS/JSPágina_de_erro.js"></script>
+    </body>
+</html>

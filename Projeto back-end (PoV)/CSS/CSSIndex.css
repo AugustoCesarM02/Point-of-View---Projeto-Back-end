@@ -1,0 +1,435 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: larger;
+  background-color: #faf9f6;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #181818;
+  color: #fff;
+}
+
+header {
+  background-color: #FAF9F6;
+  color: #121212;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header_topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.search-barra {
+  flex: 1;
+  max-width: 450px;
+}
+
+.search-barra input {
+  width: 350px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid rgb(3, 3, 3);
+  outline: none;
+  font-size: 1em;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.search-barra input:focus {
+  box-shadow: 0 0 8px rgb(0, 0, 0);
+}
+
+.botões_laterais {
+  display: flex;
+}
+
+.login-cadastro {
+  gap: 10px;
+}
+
+#login_header {
+  padding: 8px 12px;
+  border: 1px solid #121212;
+  border-radius: 5px;
+  background-color: transparent;
+  color: rgb(12, 8, 8);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #login_header{
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#cadastro_header {
+  padding: 8px 12px;
+  border: 1px solid #121212;
+  border-radius: 5px;
+  background-color: transparent;
+  color: rgb(12, 8, 8);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #cadastro_header {
+  padding: 8px 12px;
+  border: 1px solid #0078d7;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.font-controls {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+.sun {
+  display: none;
+  color: black;
+}
+.moon {
+  display: inline-block;
+  color: rgb(255, 255, 255);;
+}
+.font-controls button {
+  background: #220d0d;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.font-controls button:focus {
+  outline: 2px solid #0078d7;
+}
+
+.font-controls button:hover {
+  background: #444;
+}
+
+body.dark-mode .font-controls button {
+  background: #fff;
+  color: #181818;
+}
+
+body.dark-mode .font-controls button:hover {
+  background: #e0e0e0;
+  color: #181818;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.font-darkmode-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.toggle-dark:hover {
+  color: #ff9800;
+  transform: rotate(15deg);
+}
+
+.font-controls button {
+  background: black;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.font-controls button:hover {
+  background: #ff9800;
+}
+
+.nav-principal {
+  background: #222;
+  text-align: center;
+  position: relative;
+  z-index: 100; 
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 0;
+}
+
+.menu > li {
+  position: relative;
+}
+
+.menu > li > a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 15px;
+  transition: color 0.3s, background 0.3s;
+}
+
+.menu > li > a:hover {
+  color: #ff9800;
+}
+
+.submenu {
+  display: block;
+  position: absolute;
+  top: 110%;
+  left: 50;
+  background: #2a2a2a;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #ddd;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+
+.submenu li a:hover {
+  background: #444;
+  color: #fff;
+}
+
+.menu li:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.linha-header {
+    width: 90%;           /* Limita a largura para não tocar nos cantos */
+    margin: 0 auto;       /* Centraliza a linha perfeitamente */
+    border: none;         /* Remove a borda padrão do navegador */
+    border-top: 1px solid #EAEAEA; /* Cria a linha fina e sutil */
+}
+
+.carrossel {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  z-index: 1; 
+}
+
+
+.carrossel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: carrosselAnim 12s infinite;
+  border-radius: 0px;
+}
+
+.carrossel img:nth-child(1) {
+  animation-delay: 0s;
+}
+.carrossel img:nth-child(2) {
+  animation-delay: 3s;
+}
+.carrossel img:nth-child(3) {
+  animation-delay: 6s;
+}
+.carrossel img:nth-child(4) {
+  animation-delay: 9s;
+}
+
+@keyframes carrosselAnim {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode header,
+body.dark-mode .nav-principal {
+  background: #1f1f1f;
+}
+
+body.dark-mode .search-barra input {
+  background: #333;
+  color: #fff;
+}
+
+/*home*/
+
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #FAF9F6;
+}
+
+.cards {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px);
+    background-color: #E0E0E0;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #eaeaea;
+    text-align: center;
+    
+}
+
+
+/*Rodapé*/
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF9F6 ;
+    color: #121212;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    background-color: #FAF9F6;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.footer-text {
+    flex: 1;
+    color: #121212;
+    text-align: center;
+}
+
+.footer-social {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #ccc;
+    background-color: #121212;
+    color: #FFFFFF;
+    text-align: center;
+}
