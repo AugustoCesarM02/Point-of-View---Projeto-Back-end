@@ -373,20 +373,22 @@ body.dark-mode #formLogin input[type="reset"] {
 }
 
 /*Rodapé*/
+
 footer {
     display: flex;
     flex-direction: column;
-    background-color: #FAF9F6 ;
+    background-color: #FAF9F6;
     color: #121212;
-    bottom: 0;
     width: 100%;
 }
+
 
 .footer {
     display: flex;
     background-color: #FAF9F6;
     text-align: center;
 }
+
 
 .footer-links {
     display: flex;
@@ -396,7 +398,15 @@ footer {
     align-items: center;
     gap: 10px;
     padding: 5px;
+    list-style: none;
 }
+
+
+.footer-links a {
+    color: #121212;
+    text-decoration: none;
+}
+
 
 .footer-text {
     flex: 1;
@@ -404,17 +414,33 @@ footer {
     text-align: center;
 }
 
+
+.footer-text img {
+    max-width: 100px;
+    height: auto;
+}
+
+
 .footer-social {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     padding: 5px;
 }
+
+
+.footer-social a {
+    color: #121212;
+    text-decoration: none;
+}
+
 
 .footer-bottom {
     border-top: 1px solid #ccc;
     background-color: #121212;
     color: #FFFFFF;
     text-align: center;
+    padding: 10px;
 }

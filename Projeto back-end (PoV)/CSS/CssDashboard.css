@@ -5,6 +5,8 @@ body {
   background-color: #faf9f6;
   color: #222;
   transition: background 0.3s, color 0.3s;
+  width: 100%;
+  height: 100%;
 }
 
 body.dark-mode {
@@ -143,70 +145,88 @@ body.dark-mode .font-controls button:hover {
 }
 
 main {
-    display: flex;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .menu_lateral {
-    width: 200px;
-    padding: 10px;
-    border: #121212 solid 1px;
+  background-color: #A7774d;
+  width: 200px;
+  padding: 10px;
+  border: #121212 solid 1px;
+  height: 500px;
 }
 
 .btn_adm {
-    display: flex;
-    flex-direction: column;
-    
+  display: flex;
+  flex-direction: column;
 }
 
-.btn_adm button {
-    margin: 10px;
-    background: #220d0d;
-    color: #fff;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.3rem;
-    transition: background 0.3s, color 0.3s;
-    outline: none;
-    display: flex;
-    align-items: center;
+a {
+  margin: 10px;
+  background: #87603a;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
 }
 
 .tela_principal {
-    padding: 10px;
-    width: 1000px;
+  background-color: #D0AA7c;
+  padding: 10px;
+  width: 100%;
 }
 
 .tela_principal h3 {
-    text-align: center;
+  text-align: center;
 }
 
+/*Tela de usuario*/
+
 .tabela_provi {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
 }
 
 .tabela_provi th, .tabela_provi td { 
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid black;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black;
 }
 
 .tabela_provi button {
-    background: #220d0d;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 1.3rem;
-    transition: background 0.3s, color 0.3s;
-    outline: none;
-    display: flex;
-    align-items: center;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 50px;
-    height: 30px;
+  background: #220d0d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+}
+
+/*tela de log*/
+
+.tela_log{
+  width: 100%;
+  height: 300px;
+}
+
+.tela_log textarea{
+  width: 100%;
+  height: 100%;
 }
