@@ -238,7 +238,7 @@ abasDestaque.forEach((aba, indice) => {
 const destaquesSemana = [
 
     {
-        imagem: "img/destaque1.jpg",
+        imagem: "img/Destaque da semana 1- pexels.jpg",
 
         categoria: "FOTOGRAFIA",
 
@@ -258,7 +258,7 @@ const destaquesSemana = [
 
 
     {
-        imagem: "img/destaque2.jpg",
+        imagem: "img/Destaque da Semana 2- pexels.jpg",
 
         categoria: "DECORAÇÃO",
 
@@ -278,7 +278,7 @@ const destaquesSemana = [
 
 
     {
-        imagem: "img/destaque3.jpg",
+        imagem: "img/Destaque da semana 3- pexels.jpg",
 
         categoria: "MODA",
 
@@ -298,7 +298,7 @@ const destaquesSemana = [
 
 
     {
-        imagem: "img/destaque4.jpg",
+        imagem: "img/Destaque da semana 4- pexels.jpg",
 
         categoria: "AESTHETIC",
 
