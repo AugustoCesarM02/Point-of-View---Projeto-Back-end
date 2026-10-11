@@ -1,0 +1,468 @@
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    --font-scale: 1;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Cabeçalho */
+header {
+    background-color: black;
+    color: #fff;
+    display: flex;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header_topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 40px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    border: none;
+    border-radius: 20px;
+    padding: 8px 14px;
+    background: #D2A575;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn:hover {
+    background: #D2A575;
+    transform: scale(1.05);
+}
+
+/* Controles de fonte e modo escuro */
+.font-darkmode-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.font-controls {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.font-controls button {
+    display: flex;
+    align-items: center;
+    background: black;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: calc(1rem * var(--font-scale));
+    transition: background-color 0.3s;
+}
+
+.font-controls button:hover {
+    background: #D2A575;
+}
+
+.font-controls button:focus {
+    outline: 2px solid #D2A575;
+}
+
+.toggle-dark {
+    background: none;
+    border: none;
+    font-size: calc(1.5rem * var(--font-scale));
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.toggle-dark:hover {
+    color: #ff9800;
+    transform: rotate(15deg);
+}
+
+.sun {
+    display: none;
+}
+
+.moon {
+    display: inline-block;
+}
+
+/* Menu de navegação */
+.nav-principal {
+    background: #222;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+/* Área principal do perfil */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 40px;
+    background-color: #f5f5f5;
+}
+
+.perfil {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: start;
+    gap: 15px 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.perfil h1 {
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    font-size: calc(24px * var(--font-scale));
+    margin-bottom: 5px;
+}
+
+/* Título e subtítulo */
+h1 {
+    font-size: calc(24px * var(--font-scale));
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    font-size: calc(10px * var(--font-scale));
+    color: #555;
+    margin-bottom: 18px;
+}
+
+/* Foto de perfil */
+.foto-perfil {
+    grid-column: 1;
+    grid-row: 2;
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+/* Seção Sobre mim */
+.sobre {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    max-width: 100%;
+    background-color: #D2A575;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+
+.sobre h2 {
+    font-size: calc(15px * var(--font-scale));
+    margin-bottom: 12px;
+}
+
+.sobre p {
+    font-size: calc(9px * var(--font-scale));
+    line-height: 1.6;
+}
+
+.sobre .assinatura {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Campo Sobre mim */
+#sobremim {
+    display: block;
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+#sobremim::placeholder {
+    color: #777;
+}
+
+/* Detalhes do perfil */
+.detalhes {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 12px 20px;
+    align-items: start;
+}
+
+.detalhes h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: calc(20px * var(--font-scale));
+    margin-bottom: 0;
+}
+
+.detalhes .item:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.detalhes .item:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.detalhes .item:nth-of-type(3) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.nome {
+    grid-column: 1;
+    grid-row: 2;
+    margin-bottom: 6px;
+}
+
+.nome strong {
+    display: block;
+    font-size: calc(17px * var(--font-scale));
+    margin-bottom: 3px;
+}
+
+.nome p {
+    font-size: calc(15px * var(--font-scale));
+    color: #555;
+}
+
+.idade {
+    grid-column: 2;
+    grid-row: 2;
+    margin-bottom: 6px;
+}
+
+.idade strong {
+    display: block;
+    font-size: calc(17px * var(--font-scale));
+    margin-bottom: 3px;
+}
+
+.idade p {
+    font-size: calc(15px * var(--font-scale));
+    color: #555;
+}
+
+.localizacao {
+    grid-column: 1;
+    grid-row: 3;
+    margin-bottom: 6px;
+}
+
+.localizacao strong {
+    display: block;
+    font-size: calc(17px * var(--font-scale));
+    margin-bottom: 3px;
+}
+
+.localizacao p {
+    font-size: calc(15px * var(--font-scale));
+    color: #555;
+}
+
+/* Rodapé */
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF9F6;
+    color: #121212;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    background-color: #FAF9F6;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    list-style: none;
+}
+
+.footer-links a,
+.footer-social a {
+    color: #121212;
+    text-decoration: none;
+}
+
+.footer-text {
+    flex: 1;
+    color: #121212;
+    text-align: center;
+}
+
+.footer-text img {
+    max-width: 100px;
+    height: auto;
+}
+
+.footer-social {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #ccc;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Modo escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode header,
+body.dark-mode .nav-principal,
+body.dark-mode footer,
+body.dark-mode .footer {
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+}
+
+body.dark-mode main {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode .subtitulo,
+body.dark-mode .item p {
+    color: #ccc;
+}
+
+body.dark-mode .sobre {
+    background-color: #D2A575;
+    color: #fff;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-social a,
+body.dark-mode .footer-text {
+    color: #f1f1f1;
+}
+
+
+body.dark-mode .font-controls button {
+    background: #fff;
+    color: #181818;
+}
+
+body.dark-mode .font-controls button:hover {
+    background: #D2A575;
+}
+
+body.dark-mode .toggle-dark .sun {
+    display: inline-block;
+}
+
+body.dark-mode .toggle-dark .moon {
+    display: none;
+}
+
+body.dark-mode .search-barra input,
+body.dark-mode #sobremim {
+    background-color: #333;
+    color: #fff;
+    border-color: #666;
+}
+
+body.dark-mode #sobremim::placeholder {
+    color: #ccc;
+}
+
+body.dark-mode .footer-bottom {
+    background-color: #090909;
+    color: #fff;
+    border-top-color: #444;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+    main {
+        padding: 15px;
+    }
+
+    .perfil {
+        grid-template-columns: 100px 1fr;
+        gap: 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .foto-perfil {
+        width: 90px;
+        height: 90px;
+    }
+
+    .sobre {
+        padding: 15px;
+    }
+}
