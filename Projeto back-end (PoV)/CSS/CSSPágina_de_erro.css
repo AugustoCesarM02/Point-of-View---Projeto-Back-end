@@ -1,0 +1,336 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #181818;
+  color: #fff;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.font-controls {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+.sun {
+  display: none;
+  color: rgb(255, 255, 255);
+}
+.moon {
+  display: inline-block;
+  color: rgb(255, 255, 255);;
+}
+.font-controls button {
+  background: #220d0d;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.font-controls button:focus {
+  outline: 2px solid #0078d7;
+}
+
+.font-controls button:hover {
+  background: #444;
+}
+
+body.dark-mode .font-controls button {
+  background: #fff;
+  color: #181818;
+}
+
+body.dark-mode .font-controls button:hover {
+  background: #e0e0e0;
+  color: #181818;
+}
+
+header {
+  background-color: black;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  width: 110px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+
+.search-barra {
+  flex: 1;
+  max-width: 450px;
+}
+
+.search-barra input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.search-barra input:focus {
+  box-shadow: 0 0 8px #ff9800;
+}
+
+#cadastro_header {
+  padding: 8px 12px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #cadastro_header {
+  padding: 8px 12px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#login_header {
+  padding: 8px 12px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+body.dark-mode #login_header{
+  padding: 8px 12px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 20px;
+  border-color: #0078d7;
+  padding: 8px 14px;
+  background: #ff9800;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+  background: #ffa726;
+  transform: scale(1.05);
+}
+
+
+.font-darkmode-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.toggle-dark:hover {
+  color: #ff9800;
+  transform: rotate(15deg);
+}
+
+.font-controls button {
+  background: black;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.font-controls button:hover {
+  background: #ff9800;
+}
+
+.nav-principal {
+  background: #222;
+  text-align: center;
+  position: relative;
+  z-index: 100; 
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode header,
+body.dark-mode .nav-principal {
+  background: #1f1f1f;
+}
+
+body.dark-mode .search-barra input {
+  background: #333;
+  color: #fff;
+}
+
+/* ===== CAIXA DE ERRO ===== */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+.erro-caixa {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 50px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: surgir 0.8s ease;
+  border-top: 5px solid #ff4c4c;
+}
+
+.erro-caixa i {
+  font-size: 4rem;
+  color: #ff4c4c;
+  margin-bottom: 20px;
+}
+
+.erro-caixa h1 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.erro-caixa p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.erro-caixa button {
+  background: #ff4c4c;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.erro-caixa button:hover {
+  background: #e64545;
+  transform: scale(1.05);
+}
+
+/* Dark Mode */
+body.dark-mode .erro-caixa {
+  background: #1e1e1e;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .erro-caixa h1,
+body.dark-mode .erro-caixa p {
+  color: #fff;
+}
+
+body.dark-mode .erro-caixa button {
+  background: #ff9800;
+  color: #000;
+}
+
+body.dark-mode .erro-caixa button:hover {
+  background: #e68a00;
+}
+
+/* Animação */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

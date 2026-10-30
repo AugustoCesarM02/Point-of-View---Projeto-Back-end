@@ -1,0 +1,212 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: larger;
+  background-color: #faf9f6;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #181818;
+  color: #fff;
+}
+
+header {
+  background-color: #FAF9F6;
+  color: #121212;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header_topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.botões_laterais {
+  display: flex;
+}
+
+.font-controls {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+.sun {
+  display: none;
+  color: black;
+}
+.moon {
+  display: inline-block;
+  color: rgb(255, 255, 255);;
+}
+.font-controls button {
+  background: #220d0d;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.3s, color 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.font-controls button:focus {
+  outline: 2px solid #0078d7;
+}
+
+.font-controls button:hover {
+  background: #444;
+}
+
+body.dark-mode .font-controls button {
+  background: #fff;
+  color: #181818;
+}
+
+body.dark-mode .font-controls button:hover {
+  background: #e0e0e0;
+  color: #181818;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.font-darkmode-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-dark {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.toggle-dark:hover {
+  color: #ff9800;
+  transform: rotate(15deg);
+}
+
+.font-controls button {
+  background: black;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.font-controls button:hover {
+  background: #ff9800;
+}
+
+main {
+    display: flex;
+}
+
+.menu_lateral {
+    width: 200px;
+    padding: 10px;
+    border: #121212 solid 1px;
+}
+
+.btn_adm {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.btn_adm button {
+    margin: 10px;
+    background: #220d0d;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: background 0.3s, color 0.3s;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.tela_principal {
+    padding: 10px;
+    width: 1000px;
+}
+
+.tela_principal h3 {
+    text-align: center;
+}
+
+.tabela_provi {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.tabela_provi th, .tabela_provi td { 
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+.tabela_provi button {
+    background: #220d0d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: background 0.3s, color 0.3s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+}

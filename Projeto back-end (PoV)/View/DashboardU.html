@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard PoV</title>
+    <link rel="stylesheet" href="CSS/CssDashboardU.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+</head>
+<body>
+    <header>
+        <div class="header_topo">
+            <div class="logo">
+                <h2 id="img_logo" onclick="window.location.href='Index.html'">Point of View</h2>
+            </div>
+            <div class = "botões_laterais">
+                <div class="Icone_Usuário">
+                    <img src="">
+                    <button id="deslogar">Sair</button>
+                </div>
+                <div class="font-darkmode-controls">
+                    <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                        <i class="bi bi-brightness-high-fill sun"></i>
+                        <i class="bi bi-moon-stars moon"></i>
+                    </button>
+                <div class="font-controls">
+                    <button id="font-inc" title="Aumentar Fonte">
+                        <i class="bi bi-zoom-in"></i>
+                    </button>
+                    <button id="font-dec" title="Diminuir Fonte">
+                        <i class="bi bi-zoom-out"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="menu_lateral">
+            <h2>Dashboard</h2>
+            <hr>
+            <div class="btn_adm">
+                <button>Usuários</button>
+                <button>Log</button>
+                <button>Excluir Posts</button>
+            </div>    
+        </div>
+        <div class="tela_principal">
+            <h3>Usuários</h3>
+            <div class="tabela_usuários">
+                **Puxar a Tabela do banco de dados USUÁRIOS**
+                <br>
+                <br>
+                <table class="tabela_provi">
+                <tr>
+                    <th>Nome</th>
+                    <th>Id</th>
+                    <th>Excluir</th>
+                    <th>Promover</th>
+                    <th>Perfil</th>
+                </tr>
+                <tr>
+                    <td>Augusto</td>
+                    <td>001</td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                </tr>
+                <tr>
+                    <td>Camila</td>
+                    <td>002</td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                </tr>
+                <tr>
+                    <td>Gustavo</td>
+                    <td>003</td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                </tr>
+                <tr>
+                    <td>Thiago</td>
+                    <td>004</td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                    <td><button></button></td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Point of View</title>
+        <link rel="stylesheet" href="CSS/CSSIndex.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <header>
+            <div class="header_topo">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Point of View" onclick="window.location.href='Index.html'">
+                </div>
+                <div class="search-barra">
+                    <input type="search" name="procurar" placeholder="🔍 Procure uma Imagem ou um Fotografo">
+                </div>
+                <div class = "botoes_laterais">
+                    <button>Deslogar</button>
+                    <img src="algumacoisa" alt="foto de perfil">
+                    <div class="font-darkmode-controls">
+                        <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                            <i class="bi bi-brightness-high-fill sun"></i>
+                            <i class="bi bi-moon-stars moon"></i>
+                        </button>
+                        <div class="font-controls">
+                            <button id="font-inc" title="Aumentar Fonte">
+                                <i class="bi bi-zoom-in"></i>
+                            </button>
+                            <button id="font-dec" title="Diminuir Fonte">
+                                <i class="bi bi-zoom-out"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Destaques da Semana</a></li>
+                <li>
+                    <a href="#">☰ Categorias</a>
+                    <ul class="submenu">
+                        <li><a href="#">Aesthetic</a></li>
+                        <li><a href="#">Decoração</a></li>
+                        <li><a href="#">Moda Prática</a></li>
+                        <li><a href="#">Esportes</a></li>
+                        <li><a href="#">Rotina</a></li>
+                        <li><a href="#">Fotografia</a></li>
+                        <li><a href="#">Animais</a></li>
+                        <li><a href="#">Viagens</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+        <main>
+
+
+        <div class="carrossel">
+
+            <img
+                src="img/Carrossel 1.jpg"
+                alt="Carrossel 1">
+
+
+            <img
+                src="img/Carrossel 2.jpg"
+                alt="Carrossel 2">
+
+
+            <img
+                src="img/Carrossel 3.jpg"
+                alt="Carrossel 3">
+
+
+            <img
+                src="img/Carrossel 4.jpg"
+                alt="Carrossel 4">
+
+        </div>
+
+
+        <section class="secao-galeria">
+
+
+            <div class="titulo-galeria">
+
+                <h1>
+                    Explore imagens que
+                    <strong>contam histórias</strong>
+                </h1>
+
+                <p>
+                    Encontre novas perspectivas, inspire-se e descubra
+                    imagens incríveis no Point of View.
+                </p>
+
+            </div>
+
+
+            <div class="caixa-galeria">
+
+
+                <div class="imagem-galeria">
+
+                    <img
+                        id="imagem-destaque"
+                        src="img/Bergama. Turquia- Destaque 1.jpg"
+                        alt="Fotografia em destaque">
+
+                </div>
+
+
+                <div class="conteudo-galeria">
+
+
+                    <div class="abas-galeria">
+
+                        <span
+                            class="aba-galeria ativa"
+                            data-slide="0">
+
+                            IMAGENS
+
+                        </span>
+
+
+                        <span
+                            class="aba-galeria"
+                            data-slide="1">
+
+                            ENCONTRE-SE
+
+                        </span>
+
+
+                        <span
+                            class="aba-galeria"
+                            data-slide="2">
+
+                            INSPIRE-SE
+
+                        </span>
+
+
+                        <span
+                            class="aba-galeria"
+                            data-slide="3">
+
+                            DESCUBRA
+
+                        </span>
+
+                    </div>
+
+
+                    <h2 id="titulo-destaque">
+
+                        Lindas imagens para
+                        <br>
+                        todos os momentos
+
+                    </h2>
+
+
+                    <p id="descricao-destaque">
+
+                        Explore uma coleção de fotografias e imagens
+                        selecionadas especialmente para você.
+                        Encontre inspiração, descubra novos estilos
+                        e compartilhe suas melhores descobertas.
+
+                    </p>
+
+
+                    <a
+                        href="#"
+                        id="botao-destaque"
+                        class="botao-explore">
+
+                        Explorar
+
+                    </a>
+
+
+                    <div class="controles-carrossel">
+
+                        <button
+                            id="anterior"
+                            class="botao-carrossel"
+                            aria-label="Destaque anterior">
+
+                            <i class="bi bi-arrow-left"></i>
+
+                        </button>
+
+
+                        <button
+                            id="proximo"
+                            class="botao-carrossel"
+                            aria-label="Próximo destaque">
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+<main>
+
+    </section>
+
+
+    <section class="destaques-semana" id="destaques-semana">
+
+        <div class="titulo-destaques">
+
+            <h1>Destaques da Semana</h1>
+
+            <p>
+                Confira as fotos mais vistas, curtidas e pesquisadas
+                no Point of View esta semana.
+            </p>
+
+        </div>
+
+
+        <div class="caixa-destaques">
+
+
+            <div class="foto-destaque-semana">
+
+                <img
+                    id="fotoSemana"
+                    src="img/destaque1.jpg"
+                    alt="Foto em destaque da semana"
+                >
+
+            </div>
+
+
+            <div class="info-destaque-semana">
+
+                <span 
+                    class="categoria-destaque"
+                    id="categoriaSemana"
+                >
+                    FOTOGRAFIA
+                </span>
+
+
+                <h2 id="tituloSemana">
+                    Paisagens que<br>
+                    inspiram
+                </h2>
+
+
+                <p id="descricaoSemana">
+                    Uma das imagens mais populares
+                    da semana no Point of View.
+                </p>
+
+
+                <div class="estatisticas-destaque">
+
+                    <div class="estatistica">
+
+                        <i class="bi bi-eye"></i>
+
+                        <div>
+
+                            <strong id="visualizacoesSemana">
+                                2.548
+                            </strong>
+
+                            <span>
+                                visualizações
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="estatistica">
+
+                        <i class="bi bi-heart"></i>
+
+                        <div>
+
+                            <strong id="curtidasSemana">
+                                1.245
+                            </strong>
+
+                            <span>
+                                curtidas
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="estatistica">
+
+                        <i class="bi bi-search"></i>
+
+                        <div>
+
+                            <strong id="pesquisasSemana">
+                                856
+                            </strong>
+
+                            <span>
+                                pesquisas
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    id="botaoSemana"
+                    class="botao-destaque-semana"
+                >
+                    Explorar foto
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="indicadores-semana">
+
+            <button
+                class="indicador-semana ativo"
+                data-slide-semana="0"
+                aria-label="Destaque da semana 1"
+            ></button>
+
+            <button
+                class="indicador-semana"
+                data-slide-semana="1"
+                aria-label="Destaque da semana 2"
+            ></button>
+
+            <button
+                class="indicador-semana"
+                data-slide-semana="2"
+                aria-label="Destaque da semana 3"
+            ></button>
+
+            <button
+                class="indicador-semana"
+                data-slide-semana="3"
+                aria-label="Destaque da semana 4"
+            ></button>
+
+        </div>
+
+    </section>
+        <footer>
+
+        <hr class="linha-header">
+
+
+        <div class="footer">
+
+
+            <!-- LINKS -->
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="#">Home</a>
+                </li>
+
+                <li>
+                    <a href="#">Quem somos</a>
+                </li>
+
+                <li>
+                    <a href="#">Categorias</a>
+                </li>
+
+            </ul>
+
+
+
+            <div class="footer-text">
+
+
+                <img
+                    src="img/logo.png"
+                    alt="Imagem do rodapé">
+
+            </div>
+
+
+
+            <div class="footer-social">
+
+                <a href="#">Instagram</a>
+
+                <a href="#">X/Twitter<a>
+
+                <a href="#">Facebook</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                POINT OF VIEW
+            </p>
+
+        </div>
+
+    </footer>
+       <script src="JS/JSIndex.js" defer></script> 
+    </body>
+</html>
