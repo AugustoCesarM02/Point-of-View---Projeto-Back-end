@@ -1,4 +1,5 @@
 <?php
+session_start();
 require __DIR__ . '/../Conectivos/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -120,7 +121,14 @@ $stmt->bind_param(
 
 try {
     $stmt->execute();
+    $novoId = $conn->insert_id;
     $stmt->close();
+
+    session_regenerate_id(true);
+    $_SESSION['id_usuario'] = $novoId;
+    $_SESSION['nome'] = $nome;
+    $_SESSION['tipo_id'] = 1;
+
     header('Location: ../View/Index.php?ok=1');
     exit;
 } catch (mysqli_sql_exception $e) {

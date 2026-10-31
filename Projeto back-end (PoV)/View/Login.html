@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Pov Login </title>
+    <link rel="stylesheet" href="../CSS/CSSLogin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+</head>
+<body>
+    <header>
+        <div class="header_topo">
+            <div class="logo">
+                <h2 id="img_logo" onclick="window.location.href='Index.html'">Point of View</h2>
+            </div>
+            <div class="font-darkmode-controls">
+                <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                    <i class="bi bi-brightness-high-fill sun"></i>
+                    <i class="bi bi-moon-stars moon"></i>
+                </button>
+                <div class="font-controls">
+                    <button id="font-inc" title="Aumentar Fonte">
+                        <i class="bi bi-zoom-in"></i>
+                    </button>
+                    <button id="font-dec" title="Diminuir Fonte">
+                        <i class="bi bi-zoom-out"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <form id="formLogin">
+        <label class="titulo">Point of view</label>
+
+        <label class="login">Login</label>
+        <input type="email" id="email" placeholder="Digite seu email" required>
+
+        <label class="login">Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" minlength="6" required>
+
+        <input type="button" id="Login" value="Login" onclick="valida_localStorage()">
+        <input type="reset" id="limpar" value="Limpar tela">
+        <input type="button" id="cadastro" value="Cadastre-se" onclick="window.location.href='Cadastro.html'">
+    </form>
+    <footer>
+        <hr class="linha-header">
+        <div class="footer">
+            <lu class="footer-links">
+                <li><a href="#">teste</a></li>
+                <li><a href="#">teste</a></li>
+                <li><a href="#">teste</a></li>
+            </lu>
+            <div class="footer-text">
+                <p>PoV</p>
+                <img src="img/1.jpg" alt="imgfooter">
+            </div>
+            <div class="footer-social">
+                <a href="#">teste</a>
+                <a href="#">teste</a>
+                <a href="#">teste</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>teste</p>
+        </div>
+    </footer>
+    <script src="JS/JSLogin.js"></script>
+</body>
+</html>
+

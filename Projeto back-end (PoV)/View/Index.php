@@ -1,14 +1,6 @@
 <?php
-
-require_once __DIR__ . '/../conectivos/conexao.php';
-
-/* Dados de Usuário do Login */
-$user = $_SESSION["user_logado"] ?? null;
-$logado = (bool) $user;
-$id_usuario = $user["id"] ?? null;
-$nome_usuario = $user["nome"] ?? null;
-$email = $user["email"] ?? null;
-$foto = $user["foto"] ?? null;
+session_start();
+$logado = isset($_SESSION['id_usuario']);
 
 ?>
 
@@ -36,11 +28,11 @@ $foto = $user["foto"] ?? null;
                             <a href="../View/Login.html"><button class="btn-login">Login</button></a>
                             <a href="../View/Cadastro.html"><button class="btn-cadastro">Cadastro</button></a>
                         <?php else: ?>
-                        <?php
-                            $caminho_perfil = (!empty($foto))
-                                ? "../assets/uploads/fotos_perfil/" . $foto
-                                : "../assets/img/default-user.png";
-                        ?>
+                            <?php $foto = '../img/Perfil_Sf.png'; ?>
+                            <a href="#" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
+                                <img src="<?= $foto ?>" alt="Foto de perfil" class="foto_perfil">
+                            </a>
+                            <a href="../Conectivos/logout.php"><button class="btn-login">Sair</button></a>
                         <?php endif; ?>
                     </div>
                     <div class="font-darkmode-controls">

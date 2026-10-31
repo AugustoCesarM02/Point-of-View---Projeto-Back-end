@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | InfoMark</title>
+    <title> Pov Cadastro </title>
     <link rel="stylesheet" href="../CSS/CSSCadastro.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
 </head>
@@ -111,5 +111,17 @@
         </div>
     </footer>
     <script src="../JS/JSCadastro.js" defer></script>
+    <script>
+        const mensagens = {
+            dados: 'Verifique nome, e-mail e senha (mínimo de 8 caracteres, iguais nos dois campos).',
+            email: 'Este e-mail já está cadastrado.',
+            cpf: 'CPF inválido.',
+            cpf_duplicado: 'Este CPF já está cadastrado.',
+            data: 'Data de nascimento inválida.',
+            telefone: 'Telefone inválido (use DDD + número).'
+        };
+        const erro = new URLSearchParams(location.search).get('erro');
+        if (erro) alert(mensagens[erro] || 'Erro ao cadastrar.');
+        </script>
     </body>
 </html>
