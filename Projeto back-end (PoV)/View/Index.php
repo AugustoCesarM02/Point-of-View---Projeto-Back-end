@@ -29,7 +29,7 @@ $logado = isset($_SESSION['id_usuario']);
                             <a href="../View/Cadastro.html"><button class="btn-cadastro">Cadastro</button></a>
                         <?php else: ?>
                             <?php $foto = '../img/Perfil_Sf.png'; ?>
-                            <a href="#" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
+                            <a href="../view/Perfil.php" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
                                 <img src="<?= $foto ?>" alt="Foto de perfil" class="foto_perfil">
                             </a>
                             <a href="../Conectivos/logout.php"><button class="btn-login">Sair</button></a>
