@@ -1,5 +1,5 @@
 <?php
-require 'conexao.php';
+require __DIR__ . '/../Conectivos/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../View/Cadastro.html');
@@ -42,7 +42,7 @@ function cpfValido(string $cpf): bool
 
 function erro(string $tipo): void
 {
-    header('Location: ../html/cadastro.html?erro=' . $tipo);
+    header('Location: ../View/cadastro.html?erro=' . $tipo);
     exit;
 }
 
@@ -121,7 +121,7 @@ $stmt->bind_param(
 try {
     $stmt->execute();
     $stmt->close();
-    header('Location: ../html/login.html?ok=1');
+    header('Location: ../View/Index.php?ok=1');
     exit;
 } catch (mysqli_sql_exception $e) {
     $stmt->close();
