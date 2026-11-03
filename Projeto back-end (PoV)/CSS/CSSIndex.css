@@ -166,8 +166,8 @@ header {
 }
 
 
-#login_header,
-#cadastro_header {
+.btn-login,
+.btn-cadastro {
 
     padding: 8px 12px;
 
@@ -187,8 +187,8 @@ header {
 }
 
 
-#login_header:hover,
-#cadastro_header:hover {
+.btn-login:hover,
+.btn-cadastro:hover {
 
     background-color: #D2A575;
 

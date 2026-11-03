@@ -380,6 +380,12 @@ footer {
     text-align: center;
 }
 
+.footer-text img {
+
+    max-width: 100px;
+    height: auto;
+}
+
 .footer-social {
     flex: 1;
     display: flex;
