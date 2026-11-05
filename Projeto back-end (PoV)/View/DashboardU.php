@@ -1,24 +1,22 @@
 <?php
-session_start();
 
-/* ----------------------------------------------------------
-   1) PROTEÇÃO DA PÁGINA
-   Descomente quando o login já gravar o cargo na sessão.
-   ---------------------------------------------------------- */
-// if (!isset($_SESSION['id_usuario']) || ($_SESSION['cargo'] ?? '') !== 'admin') {
-//     header('Location: ../View/Login.html');
-//     exit;
-// }
+require_once '../Conectivos/conexao.php';
+
+/* PROTEÇÃO DA PÁGINA */
+
+if (!isset($_SESSION['id']) || ($_SESSION['tipo'] ?? 0) != 2) {
+    header('Location: Login.html');
+    exit;
+}
 
 $_SESSION['csrf'] = $_SESSION['csrf'] ?? bin2hex(random_bytes(16));
 
 $nomeAdmin = $_SESSION['nome'] ?? 'Administrador';
-$idAdmin   = $_SESSION['id_usuario'] ?? null;
+$idAdmin   = $_SESSION['id'] ?? null;
 
 
-/* ----------------------------------------------------------
-   2) FUNÇÕES AUXILIARES
-   ---------------------------------------------------------- */
+/* FUNÇÕES AUXILIARES */
+
 function e($valor)
 {
     return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
@@ -28,52 +26,61 @@ function iniciais($nome)
 {
     $partes = preg_split('/\s+/', trim((string) $nome));
     $letras = mb_substr($partes[0] ?? '', 0, 1);
+
     if (count($partes) > 1) {
         $letras .= mb_substr(end($partes), 0, 1);
     }
+
     return mb_strtoupper($letras);
 }
 
 
-/* ----------------------------------------------------------
-   3) DADOS DOS USUÁRIOS
-   Troque este array pelo resultado do seu SELECT. Exemplo:
+/* BUSCAR USUÁRIOS NO BANCO */
 
-   require '../Conectivos/conexao.php';
-   $usuarios = $pdo->query(
-       "SELECT id, nome, email, cargo, data_cadastro, foto
-          FROM usuarios ORDER BY nome"
-   )->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT
+            u.id_usuario AS id,
+            u.nome,
+            u.email,
+            u.tipo_id,
+            u.foto_perfil,
+            t.descricao AS cargo,
+            u.criado_em AS data_cadastro
+        FROM usuarios u
+        INNER JOIN tipos_usuario t
+            ON u.tipo_id = t.tipo_id
+        ORDER BY u.nome";
 
-   Só "id" e "nome" são obrigatórios. Os outros campos são
-   opcionais: se a coluna não existir, a linha simplesmente
-   não mostra aquela informação.
-   ---------------------------------------------------------- */
-$usuarios = [
-    ['id' => 1, 'nome' => 'Augusto', 'email' => 'augusto@exemplo.com', 'cargo' => 'admin',   'data_cadastro' => '2026-01-12'],
-    ['id' => 2, 'nome' => 'Camila',  'email' => 'camila@exemplo.com',  'cargo' => 'usuario', 'data_cadastro' => '2026-03-04'],
-    ['id' => 3, 'nome' => 'Gustavo', 'email' => 'gustavo@exemplo.com', 'cargo' => 'usuario', 'data_cadastro' => '2026-10-21'],
-    ['id' => 4, 'nome' => 'Thiago',  'email' => 'thiago@exemplo.com',  'cargo' => 'usuario', 'data_cadastro' => '2026-10-28'],
-];
+$resultado = $conn->query($sql);
+
+$usuarios = [];
+
+if (!$resultado) {
+    die("Erro ao consultar usuários: " . $conn->error);
+}
+
+while ($usuario = $resultado->fetch_assoc()) {
+    $usuarios[] = $usuario;
+}
 
 
-/* ----------------------------------------------------------
-   4) NÚMEROS DA FAIXA SUPERIOR
-   Com muitos registros, prefira calcular com COUNT(*) no SQL.
-   ---------------------------------------------------------- */
-$total   = count($usuarios);
-$admins  = 0;
-$novos   = 0;
+/* NÚMEROS DO RESUMO */
+
+$total = count($usuarios);
+$admins = 0;
+$novos = 0;
 $mesAtual = date('Y-m');
 
 foreach ($usuarios as $u) {
+
     if (($u['cargo'] ?? 'usuario') === 'admin') {
         $admins++;
     }
+
     if (substr((string) ($u['data_cadastro'] ?? ''), 0, 7) === $mesAtual) {
         $novos++;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -210,7 +217,7 @@ foreach ($usuarios as $u) {
                                     $cargo    = ($u['cargo'] ?? 'usuario') === 'admin' ? 'admin' : 'usuario';
                                     $ehAdmin  = $cargo === 'admin';
                                     $ehVoce   = $idAdmin !== null && (string) $idAdmin === (string) $id;
-                                    $foto     = $u['foto'] ?? '';
+                                    $foto = $u['foto_perfil'] ?? '';
                                     $cadastro = !empty($u['data_cadastro']) ? date('d/m/Y', strtotime($u['data_cadastro'])) : '-';
                                     $idFmt    = '#' . str_pad((string) $id, 3, '0', STR_PAD_LEFT);
                                     $busca    = mb_strtolower($nome . ' ' . $email . ' ' . $idFmt . ' ' . $id);

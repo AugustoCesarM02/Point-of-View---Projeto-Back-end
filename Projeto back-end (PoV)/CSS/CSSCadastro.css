@@ -348,13 +348,12 @@ body.dark-mode #formCadastro input[type="reset"] {
     background-color: #007bff;
 }
 
-/*Rodapé*/
+/* Rodapé */
 footer {
     display: flex;
     flex-direction: column;
-    background-color: #FAF9F6 ;
+    background-color: #FAF9F6;
     color: #121212;
-    bottom: 0;
     width: 100%;
 }
 
@@ -378,12 +377,19 @@ footer {
     flex: 1;
     color: #121212;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-text img {
-
-    max-width: 100px;
-    height: auto;
+    width: 90px;
+    height: 90px;
+    max-width: 90px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
 }
 
 .footer-social {

@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS tipos_usuario (
 INSERT INTO tipos_usuario (tipo_id, descricao) VALUES (1, 'normal'), (2, 'admin')
 ON DUPLICATE KEY UPDATE descricao = VALUES(descricao);
 
+ALTER TABLE usuarios
+ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL;
+
 CREATE TABLE IF NOT EXISTS usuarios (
   id_usuario INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
@@ -44,6 +47,16 @@ CREATE TABLE IF NOT EXISTS postagem (
   id_usuario INT NOT NULL,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS logs (
+id_log INT AUTO_INCREMENT PRIMARY KEY,
+id_usuario INT DEFAULT NULL,
+acao VARCHAR(100) NOT NULL,
+descricao VARCHAR(255),
+data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Admin: troque o hash pelo gerado com password_hash() no PHP
 INSERT INTO usuarios (nome, email, senha, tipo_id) VALUES

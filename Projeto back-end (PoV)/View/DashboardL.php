@@ -1,3 +1,34 @@
+<?php
+
+require_once '../Conectivos/conexao.php';
+
+/* BUSCAR LOGS NO BANCO DE DADOS */
+
+$sql = "SELECT
+            l.id_log,
+            l.acao,
+            l.descricao,
+            l.data_hora,
+            u.nome
+        FROM logs l
+        LEFT JOIN usuarios u
+            ON l.id_usuario = u.id_usuario
+        ORDER BY l.data_hora DESC";
+
+$resultado = $conn->query($sql);
+
+$logs = [];
+
+if (!$resultado) {
+    die("Erro ao consultar os logs: " . $conn->error);
+}
+
+while ($log = $resultado->fetch_assoc()) {
+    $logs[] = $log;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +78,46 @@
         <div class="tela_principal">
             <h3>Log</h3>
             <div class="tela_log">
-                <textarea>loglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglogloglog</textarea>
+<div class="tela_log">
+
+    <?php if (count($logs) > 0): ?>
+
+        <?php foreach ($logs as $log): ?>
+
+            <div class="log-item">
+
+                <h4>
+                    <?= htmlspecialchars($log['acao']) ?>
+                </h4>
+
+                <p>
+                    <?= htmlspecialchars($log['descricao'] ?? '') ?>
+                </p>
+
+                <small>
+                    Usuário:
+                    <?= htmlspecialchars($log['nome'] ?? 'Usuário removido') ?>
+                </small>
+
+                <br>
+
+                <small>
+                    Data:
+                    <?= date(
+                        'd/m/Y H:i',
+                        strtotime($log['data_hora'])
+                    ) ?>
+                </small>
+
             </div>
+
+        <?php endforeach; ?>
+
+    <?php else: ?>
+
+        <p>Nenhuma atividade registrada.</p>
+
+    <?php endif; ?>
         </div>
     </main>
 </body>
