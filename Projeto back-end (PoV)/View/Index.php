@@ -17,7 +17,7 @@ $logado = isset($_SESSION['id_usuario']);
         <header>
             <div class="header_topo">
                 <div class="logo">
-                    <img src="../img/logo.png" alt="Point of View" onclick="window.location.href='Index.html'">
+                    <img src="../img/logo.png" alt="Point of View" onclick="window.location.href='Index.php'">
                 </div>
                 <div class="search-barra">
                     <input type="search" name="procurar" placeholder="🔍 Procure uma Imagem ou um Fotografo">
@@ -29,9 +29,10 @@ $logado = isset($_SESSION['id_usuario']);
                             <a href="../View/Cadastro.html"><button class="btn-cadastro">Cadastro</button></a>
                         <?php else: ?>
                             <?php $foto = '../img/Perfil_Sf.png'; ?>
-                            <a href="../view/Perfil.php" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
+                            <a href="../View/Perfil.php" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
                                 <img src="<?= $foto ?>" alt="Foto de perfil" class="foto_perfil">
                             </a>
+                            <span class="nome_usuario">Olá, <?= htmlspecialchars(explode(' ', $_SESSION['nome'])[0]) ?></span>
                             <a href="../Conectivos/logout.php"><button class="btn-login">Sair</button></a>
                         <?php endif; ?>
                     </div>
@@ -449,6 +450,6 @@ $logado = isset($_SESSION['id_usuario']);
         </div>
 
     </footer>
-       <script src="JS/JSIndex.js" defer></script> 
+       <script src="../JS/JSIndex.js" defer></script> 
     </body>
 </html>

@@ -12,7 +12,11 @@ if ($conn->connect_error) {
     die('Erro de conexão com o banco de dados.');
 }
 $conn->set_charset('utf8mb4');
-session_start();
+
+// Só inicia a sessão se ainda não houver uma (evita o aviso de "session already active")
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 function json_out($data, $code = 200) {
     http_response_code($code);

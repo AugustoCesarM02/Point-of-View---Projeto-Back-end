@@ -10,8 +10,6 @@ CREATE TABLE IF NOT EXISTS tipos_usuario (
 INSERT INTO tipos_usuario (tipo_id, descricao) VALUES (1, 'normal'), (2, 'admin')
 ON DUPLICATE KEY UPDATE descricao = VALUES(descricao);
 
-ALTER TABLE usuarios
-ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL;
 
 CREATE TABLE IF NOT EXISTS usuarios (
   id_usuario INT AUTO_INCREMENT PRIMARY KEY,

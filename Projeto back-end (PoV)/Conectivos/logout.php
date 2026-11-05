@@ -1,4 +1,6 @@
 <?php
-require 'conexao.php';
+require __DIR__ . '/conexao.php';
+session_unset();
 session_destroy();
-header('Location: ../view/Index.php');
+header('Location: ../View/Index.php');
+exit;

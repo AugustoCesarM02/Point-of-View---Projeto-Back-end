@@ -10,7 +10,7 @@
     <header>
         <div class="header_topo">
             <div class="logo">
-                <h2 id="img_logo" onclick="window.location.href='Index.html'">Point of View</h2>
+                <h2 id="img_logo" onclick="window.location.href='Index.php'">Point of View</h2>
             </div>
             <div class="font-darkmode-controls">
                 <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
@@ -28,16 +28,17 @@
             </div>
         </div>
     </header>
-    <form id="formLogin">
+    <form id="formLogin" action="../Controladores/login_Control.php" method="post">
+        <p id="msgErro" class="msg-erro" style="display:none;color:#c0392b;text-align:center;"></p>
         <label class="titulo">Point of view</label>
 
         <label class="login">Login</label>
-        <input type="email" id="email" placeholder="Digite seu email" required>
+        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
 
         <label class="login">Senha</label>
-        <input type="password" id="senha" placeholder="Digite sua senha" minlength="6" required>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" minlength="6" required>
 
-        <input type="button" id="Login" value="Login" onclick="valida_localStorage()">
+        <input type="submit" id="Login" value="Login">
         <input type="reset" id="limpar" value="Limpar tela">
         <input type="button" id="cadastro" value="Cadastre-se" onclick="window.location.href='Cadastro.html'">
     </form>
@@ -51,7 +52,7 @@
             </lu>
             <div class="footer-text">
                 <p>PoV</p>
-                <img src="img/1.jpg" alt="imgfooter">
+                <img src="../img/logo.png" alt="imgfooter">
             </div>
             <div class="footer-social">
                 <a href="#">teste</a>
@@ -63,7 +64,7 @@
             <p>teste</p>
         </div>
     </footer>
-    <script src="JS/JSLogin.js"></script>
+    <script src="../JS/JSLogin.js"></script>
 </body>
 </html>
 

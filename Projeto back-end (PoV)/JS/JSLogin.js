@@ -42,15 +42,14 @@ document.getElementById("font-dec").addEventListener("click", () => {
 });
 });
 
-function valida_localStorage() {
-    const emailInput = document.getElementById("email").value;
-    const senhaInput = document.getElementById("senha").value;
-    const savedEmail = localStorage.getItem("email");
-    const savedSenha = localStorage.getItem("senha");
-    if (emailInput === savedEmail && senhaInput === savedSenha) {
-        alert("Login bem-sucedido!");
-        window.location.href = "Index.html"; 
-    } else {
-        alert("Email ou senha incorretos. Tente novamente.");
+// Mostra mensagem quando o PHP volta com ?erro=1
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("erro") === "1") {
+        const msg = document.getElementById("msgErro");
+        if (msg) {
+            msg.textContent = "Email ou senha incorretos. Tente novamente.";
+            msg.style.display = "block";
+        }
     }
-}
+});
