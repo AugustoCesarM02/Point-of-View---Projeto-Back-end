@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   telefone_celular VARCHAR(15) DEFAULT NULL,
   telefone_fixo VARCHAR(15) DEFAULT NULL,
   endereco VARCHAR(150) DEFAULT NULL,
+  foto_usuario VARCHAR(255) DEFAULT NULL,
   tipo_id INT NOT NULL DEFAULT 1,
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (tipo_id) REFERENCES tipos_usuario(tipo_id)
@@ -55,7 +56,3 @@ data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Admin: troque o hash pelo gerado com password_hash() no PHP
-INSERT INTO usuarios (nome, email, senha, tipo_id) VALUES
-('Augusto', 'admin@admin.com', 'COLE_AQUI_O_HASH_GERADO_PELO_PHP', 2);

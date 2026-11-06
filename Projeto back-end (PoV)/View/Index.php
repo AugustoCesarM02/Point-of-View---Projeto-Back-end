@@ -1,6 +1,38 @@
 <?php
 session_start();
-$logado = isset($_SESSION['id_usuario']);
+$logado  = isset($_SESSION['id_usuario']);
+$foto    = '../Perfil/Perfil_Sf.png'; // foto padrão
+$ehAdmin = false;
+
+if ($logado) {
+    require __DIR__ . '/../Conectivos/conexao.php';
+
+    $idUsuario = (int) $_SESSION['id_usuario'];
+    $stmt = $conn->prepare('SELECT foto_usuario, tipo_id FROM usuarios WHERE id_usuario = ?');
+    $stmt->bind_param('i', $idUsuario);
+    $stmt->execute();
+    $stmt->bind_result($fotoBanco, $tipoId);
+    $achou = $stmt->fetch();
+    $stmt->close();
+
+    if (!$achou) {
+        // Usuário não existe mais no banco: encerra a sessão
+        session_unset();
+        session_destroy();
+        $logado = false;
+    } else {
+        $ehAdmin = ((int) $tipoId === 2);
+
+        // Só aceita caminhos no formato gerado pelo cadastro e que existam no disco
+        if (
+            $fotoBanco
+            && preg_match('#^Perfil/usuarios/[a-f0-9]{32}\.(jpg|png|webp)$#', $fotoBanco)
+            && is_file(__DIR__ . '/../' . $fotoBanco)
+        ) {
+            $foto = '../' . $fotoBanco;
+        }
+    }
+}
 
 ?>
 
@@ -28,11 +60,13 @@ $logado = isset($_SESSION['id_usuario']);
                             <a href="../View/Login.html"><button class="btn-login">Login</button></a>
                             <a href="../View/Cadastro.html"><button class="btn-cadastro">Cadastro</button></a>
                         <?php else: ?>
-                            <?php $foto = '../img/Perfil_Sf.png'; ?>
                             <a href="../View/Perfil.php" class="perfil_link" title="<?= htmlspecialchars($_SESSION['nome']) ?>">
                                 <img src="<?= $foto ?>" alt="Foto de perfil" class="foto_perfil">
                             </a>
                             <span class="nome_usuario">Olá, <?= htmlspecialchars(explode(' ', $_SESSION['nome'])[0]) ?></span>
+                            <?php if ($ehAdmin): ?>
+                                <a href="../View/DashboardU.php"><button class="btn-login">Dashboard</button></a>
+                            <?php endif; ?>
                             <a href="../Conectivos/logout.php"><button class="btn-login">Sair</button></a>
                         <?php endif; ?>
                     </div>

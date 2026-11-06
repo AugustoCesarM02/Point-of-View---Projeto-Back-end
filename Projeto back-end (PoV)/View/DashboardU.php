@@ -1,18 +1,36 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-require_once '../Conectivos/conexao.php';
+require_once __DIR__ . '/../Conectivos/conexao.php';
 
 /* PROTEÇÃO DA PÁGINA */
 
-if (!isset($_SESSION['id']) || ($_SESSION['tipo'] ?? 0) != 2) {
+// 1) Precisa estar logado
+if (!isset($_SESSION['id_usuario'])) {
     header('Location: Login.html');
     exit;
 }
 
-$_SESSION['csrf'] = $_SESSION['csrf'] ?? bin2hex(random_bytes(16));
+// 2) Precisa ser admin (tipo_id = 2), conferido no banco e não só na sessão
+$idAdmin = (int) $_SESSION['id_usuario'];
 
-$nomeAdmin = $_SESSION['nome'] ?? 'Administrador';
-$idAdmin   = $_SESSION['id'] ?? null;
+$stmt = $conn->prepare('SELECT nome, tipo_id FROM usuarios WHERE id_usuario = ?');
+$stmt->bind_param('i', $idAdmin);
+$stmt->execute();
+$stmt->bind_result($nomeBanco, $tipoId);
+$achou = $stmt->fetch();
+$stmt->close();
+
+if (!$achou || (int) $tipoId !== 2) {
+    header('Location: Index.php');
+    exit;
+}
+
+$nomeAdmin = $nomeBanco ?: 'Administrador';
+
+$_SESSION['csrf'] = $_SESSION['csrf'] ?? bin2hex(random_bytes(16));
 
 
 /* FUNÇÕES AUXILIARES */
@@ -42,7 +60,7 @@ $sql = "SELECT
             u.nome,
             u.email,
             u.tipo_id,
-            u.foto_perfil,
+            u.foto_usuario,
             t.descricao AS cargo,
             u.criado_em AS data_cadastro
         FROM usuarios u
@@ -217,7 +235,7 @@ foreach ($usuarios as $u) {
                                     $cargo    = ($u['cargo'] ?? 'usuario') === 'admin' ? 'admin' : 'usuario';
                                     $ehAdmin  = $cargo === 'admin';
                                     $ehVoce   = $idAdmin !== null && (string) $idAdmin === (string) $id;
-                                    $foto = $u['foto_perfil'] ?? '';
+                                    $foto     = $u['foto_usuario'] ?? '';
                                     $cadastro = !empty($u['data_cadastro']) ? date('d/m/Y', strtotime($u['data_cadastro'])) : '-';
                                     $idFmt    = '#' . str_pad((string) $id, 3, '0', STR_PAD_LEFT);
                                     $busca    = mb_strtolower($nome . ' ' . $email . ' ' . $idFmt . ' ' . $id);

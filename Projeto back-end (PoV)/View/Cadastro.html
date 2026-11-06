@@ -30,7 +30,7 @@
         </div>
     </header>
     <div class="cadastro-container">
-        <form id="formCadastro" action="../Controladores/cadastro_Control.php" method="post" novalidate>
+        <form id="formCadastro" action="../Controladores/cadastro_Control.php" method="post" enctype="multipart/form-data" novalidate>
             <h2>Preencha seus dados</h2>
 
             <label for="nome">Nome completo:</label>
@@ -64,6 +64,9 @@
 
             <label for="endereco">Endereço completo:</label>
             <input type="text" id="endereco" name="endereco" placeholder="Bairro, rua, número e complemento">
+
+            <label for="foto">Foto de perfil (opcional, JPG, PNG ou WebP, até 2 MB):</label>
+            <input type="file" id="foto" name="foto" accept="image/jpeg,image/png,image/webp">
 
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" minlength="8" required>
@@ -118,7 +121,10 @@
             cpf: 'CPF inválido.',
             cpf_duplicado: 'Este CPF já está cadastrado.',
             data: 'Data de nascimento inválida.',
-            telefone: 'Telefone inválido (use DDD + número).'
+            telefone: 'Telefone inválido (use DDD + número).',
+            foto: 'Não foi possível processar a foto de perfil. Tente outra imagem.',
+            foto_tipo: 'Formato de foto não permitido. Use JPG, PNG ou WebP.',
+            foto_tamanho: 'A foto de perfil deve ter no máximo 2 MB.'
         };
         const erro = new URLSearchParams(location.search).get('erro');
         if (erro) alert(mensagens[erro] || 'Erro ao cadastrar.');
