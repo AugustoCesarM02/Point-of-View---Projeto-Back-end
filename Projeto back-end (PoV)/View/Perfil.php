@@ -16,7 +16,7 @@
         <div class="header_topo">
             <div class="logo">
                 <h2 id="img_logo"
-                    onclick="window.location.href='Index.html'">
+                    onclick="window.location.href='Index.php'">
                     Point of View
                 </h2>
             </div>
