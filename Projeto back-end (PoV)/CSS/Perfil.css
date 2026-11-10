@@ -1,116 +1,117 @@
-/* Configurações gerais */
+:root {
+    --pov-fundo: #FAF9F6;
+    --pov-bege: #D2A575;
+    --pov-bege-claro: #E8C9A5;
+    --pov-marrom: #302319;
+    --pov-texto: #FAF9F6;
+    --pov-suave: #D9CABC;                    /* textos secundários sobre o cartão escuro */
+    --pov-linha: rgba(255, 255, 255, 0.16);  /* divisórias dentro do cartão */
+    --pov-erro: #ff9b91;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     --font-scale: 1;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: black;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #171411;
+    background: var(--pov-fundo);
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Cabeçalho */
+/* ---------- Cabeçalho ---------- */
 header {
-    background-color: black;
-    color: #fff;
-    display: flex;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.header_topo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 40px;
-    flex-wrap: wrap;
-}
-
-.logo {
-    width: 200px;
-    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 249, 246, 0.83);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
     transition: transform 0.3s ease;
 }
 
-.logo:hover {
-    transform: scale(1.05);
+/* Cabeçalho escondido ao rolar para cima */
+header.header-oculto {
+    transform: translateY(-100%);
 }
 
-.user-actions {
+.header_topo {
+    min-height: 76px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 7%;
 }
 
-.btn {
-    border: none;
-    border-radius: 20px;
-    padding: 8px 14px;
-    background: #D2A575;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
+.logo {
+    color: #171411;
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -1.2px;
+    transition: opacity 0.25s ease;
 }
 
-.btn:hover {
-    background: #D2A575;
-    transform: scale(1.05);
+.logo:hover {
+    opacity: 0.75;
+}
+
+.logo-destaque {
+    color: #A97848;
 }
 
 /* Controles de fonte e modo escuro */
 .font-darkmode-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .font-controls {
     display: flex;
-    gap: 5px;
-    margin-left: 10px;
+    gap: 6px;
 }
 
+.toggle-dark,
 .font-controls button {
-    display: flex;
+    width: 39px;
+    height: 39px;
+    display: inline-flex;
     align-items: center;
-    background: black;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--pov-marrom);
     color: #fff;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 8px;
+    font-size: 17px;
     cursor: pointer;
-    font-size: calc(1rem * var(--font-scale));
-    transition: background-color 0.3s;
+    transition: 0.25s ease;
 }
 
+.toggle-dark:hover,
 .font-controls button:hover {
-    background: #D2A575;
+    background: #A97848;
+    transform: translateY(-2px);
 }
 
-.font-controls button:focus {
-    outline: 2px solid #D2A575;
-}
-
-.toggle-dark {
-    background: none;
-    border: none;
-    font-size: calc(1.5rem * var(--font-scale));
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.3s, color 0.3s;
-}
-
-.toggle-dark:hover {
-    color: #ff9800;
-    transform: rotate(15deg);
+.toggle-dark:focus-visible,
+.font-controls button:focus-visible {
+    outline: 2px solid var(--pov-bege);
+    outline-offset: 2px;
 }
 
 .sun {
@@ -121,211 +122,575 @@ header {
     display: inline-block;
 }
 
-/* Menu de navegação */
-.nav-principal {
-    background: #222;
-    text-align: center;
-    position: relative;
-    z-index: 100;
-}
+/* ---------- Fundo fotográfico ---------- */
+/* A imagem é img/fundo-perfil.jpg. Para trocar o fundo, basta substituir esse arquivo
+   (mesmo nome).*/
+.pagina-perfil {
+    --sobreposicao: linear-gradient(
+        180deg,
+        rgba(15, 12, 9, 0.55) 0%,
+        rgba(15, 12, 9, 0.32) 45%,
+        rgba(15, 12, 9, 0.60) 100%
+    );
 
-/* Área principal do perfil */
-main {
+    flex: 1;
+    min-height: 70vh;
     display: flex;
-    justify-content: center;
     align-items: flex-start;
-    width: 100%;
-    min-height: 100vh;
-    padding: 20px 40px;
-    background-color: #f5f5f5;
+    justify-content: center;
+    padding: 40px 20px 60px;
+
+    background-image:
+        var(--sobreposicao),
+        url("../img/fundo-perfil.jpg"),
+        url("../img/Capa Login.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
+/* ---------- Cartão do perfil ---------- */
 .perfil {
     display: grid;
     grid-template-columns: 150px 1fr;
     grid-template-rows: auto auto auto;
     align-items: start;
-    gap: 15px 20px;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    gap: 22px 24px;
+    width: min(100%, 860px);
+    padding: 34px 38px 40px;
     text-align: left;
+    color: var(--pov-texto);
+
+    background: rgba(48, 35, 25, 0.86);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 24px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
 }
 
-.perfil h1 {
+/* Marca, título e frase de abertura */
+.introducao-perfil {
     grid-column: 1 / -1;
-    width: 100%;
+    grid-row: 1;
     text-align: center;
-    font-size: calc(24px * var(--font-scale));
-    margin-bottom: 5px;
 }
 
-/* Título e subtítulo */
-h1 {
-    font-size: calc(24px * var(--font-scale));
-    margin-bottom: 5px;
+.marca-formulario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 14px;
+    color: var(--pov-bege-claro);
+    font-size: calc(11px * var(--font-scale));
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
-.subtitulo {
-    font-size: calc(10px * var(--font-scale));
-    color: #555;
-    margin-bottom: 18px;
+.marca-ponto {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--pov-bege);
+    box-shadow: 0 0 12px rgba(210, 165, 117, 0.8);
 }
 
-/* Foto de perfil */
+.introducao-perfil h1 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: calc(30px * var(--font-scale));
+    font-weight: 700;
+}
+
+.introducao-perfil p {
+    color: #E8DED2;
+    font-size: calc(14px * var(--font-scale));
+    line-height: 1.5;
+}
+
+.introducao-perfil a {
+    color: var(--pov-bege-claro);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.introducao-perfil a:hover {
+    text-decoration: underline;
+}
+
+/* Títulos das seções */
+.detalhes h2,
+.biografia h2,
+.fotos h2 {
+    color: #fff;
+    font-size: calc(19px * var(--font-scale));
+    font-weight: 700;
+}
+
+/* ---------- Foto de perfil ---------- */
 .foto-perfil {
     grid-column: 1;
     grid-row: 2;
     display: block;
     width: 120px;
     height: 120px;
+    margin: 0 auto;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto;
+    border: 3px solid var(--pov-bege);
+    box-shadow:
+        0 0 0 6px rgba(210, 165, 117, 0.18),
+        0 10px 26px rgba(0, 0, 0, 0.35);
 }
 
-/* Seção Sobre mim */
-.sobre {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    width: 100%;
-    max-width: 100%;
-    background-color: #D2A575;
-    color: #fff;
-    padding: 15px;
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-
-.sobre h2 {
-    font-size: calc(15px * var(--font-scale));
-    margin-bottom: 12px;
-}
-
-.sobre p {
-    font-size: calc(9px * var(--font-scale));
-    line-height: 1.6;
-}
-
-.sobre .assinatura {
-    margin-top: 10px;
-    font-style: italic;
-}
-
-/* Campo Sobre mim */
-#sobremim {
-    display: block;
-    width: 100%;
-    min-height: 150px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-}
-
-#sobremim::placeholder {
-    color: #777;
-}
-
-/* Detalhes do perfil */
+/* ---------- Detalhes ---------- */
 .detalhes {
     grid-column: 2;
     grid-row: 2;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
-    gap: 12px 20px;
+    gap: 14px 20px;
     align-items: start;
 }
 
 .detalhes h2 {
     grid-column: 1 / -1;
     grid-row: 1;
-    font-size: calc(20px * var(--font-scale));
-    margin-bottom: 0;
-}
-
-.detalhes .item:nth-of-type(1) {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.detalhes .item:nth-of-type(2) {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.detalhes .item:nth-of-type(3) {
-    grid-column: 1;
-    grid-row: 3;
 }
 
 .nome {
     grid-column: 1;
     grid-row: 2;
-    margin-bottom: 6px;
-}
-
-.nome strong {
-    display: block;
-    font-size: calc(17px * var(--font-scale));
-    margin-bottom: 3px;
-}
-
-.nome p {
-    font-size: calc(15px * var(--font-scale));
-    color: #555;
 }
 
 .idade {
     grid-column: 2;
     grid-row: 2;
-    margin-bottom: 6px;
-}
-
-.idade strong {
-    display: block;
-    font-size: calc(17px * var(--font-scale));
-    margin-bottom: 3px;
-}
-
-.idade p {
-    font-size: calc(15px * var(--font-scale));
-    color: #555;
 }
 
 .localizacao {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 3;
-    margin-bottom: 6px;
 }
 
+.nome strong,
+.idade strong,
 .localizacao strong {
     display: block;
-    font-size: calc(17px * var(--font-scale));
-    margin-bottom: 3px;
+    margin-bottom: 4px;
+    color: var(--pov-bege-claro);
+    font-size: calc(11px * var(--font-scale));
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
+.nome p,
+.idade p,
 .localizacao p {
-    font-size: calc(15px * var(--font-scale));
-    color: #555;
+    color: #fff;
+    font-size: calc(16px * var(--font-scale));
+    overflow-wrap: anywhere;
 }
 
-/* Rodapé */
+/* ---------- Compartilhar perfil ---------- */
+.compartilhar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.compartilhar .btn {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 14px;
+    background: var(--pov-bege);
+    color: #21170F;
+
+    font-family: inherit;
+    font-size: calc(15px * var(--font-scale));
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.compartilhar .btn:hover {
+    background: #E4BD91;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.compartilhar .btn:focus-visible {
+    outline: 3px solid var(--pov-bege-claro);
+    outline-offset: 3px;
+}
+
+.compartilhar-status {
+    color: var(--pov-suave);
+    font-size: calc(14px * var(--font-scale));
+}
+
+/* ---------- Biografia ---------- */
+.biografia {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    padding-top: 20px;
+    border-top: 1px solid var(--pov-linha);
+}
+
+.biografia h2 {
+    margin-bottom: 10px;
+}
+
+/* Campo Biografia: só o texto, sem caixa */
+#biografia {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: calc(16px * var(--font-scale));
+}
+
+#biografia::placeholder {
+    color: #F0E7DE;
+    opacity: 0.65;
+}
+
+/* Biografia vista por visitantes (somente leitura) */
+.biografia-texto {
+    color: #fff;
+    font-size: calc(16px * var(--font-scale));
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+/* Mensagem "Biografia salva." */
+.biografia-status {
+    min-height: 1.4em;
+    margin-top: 6px;
+    color: var(--pov-suave);
+    font-size: calc(13px * var(--font-scale));
+}
+
+.biografia-status.erro {
+    color: var(--pov-erro);
+}
+
+/* ---------- Fotos ---------- */
+.fotos {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid var(--pov-linha);
+}
+
+.fotos [hidden] {
+    display: none !important;
+}
+
+/* Cabeçalho clicável da seção retrátil */
+.fotos > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.fotos > summary::-webkit-details-marker {
+    display: none;
+}
+
+.fotos > summary:focus-visible {
+    outline: 3px solid var(--pov-bege-claro);
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
+.fotos[open] > summary {
+    margin-bottom: 14px;
+}
+
+.fotos-seta {
+    color: var(--pov-bege-claro);
+    font-size: calc(20px * var(--font-scale));
+    transition: transform 0.3s;
+}
+
+.fotos[open] .fotos-seta {
+    transform: rotate(180deg);
+}
+
+/* Botão + (primeiro item da grade de fotos) */
+.fotos-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    border: 2px dashed var(--pov-bege);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+.fotos-area:hover,
+.fotos-area:focus-within,
+.fotos-area.arrastando {
+    border-color: var(--pov-bege-claro);
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.fotos-area:focus-within {
+    outline: 2px solid var(--pov-bege-claro);
+    outline-offset: 2px;
+}
+
+.fotos-mais {
+    color: var(--pov-bege);
+    font-size: calc(44px * var(--font-scale));
+    font-weight: 300;
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.25s;
+}
+
+.fotos-area:hover .fotos-mais,
+.fotos-area:focus-within .fotos-mais,
+.fotos-area.arrastando .fotos-mais {
+    color: var(--pov-bege-claro);
+}
+
+.fotos-area input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mensagens de status */
+.fotos-status {
+    min-height: 1.4em;
+    margin-bottom: 8px;
+    color: var(--pov-suave);
+    font-size: calc(14px * var(--font-scale));
+}
+
+.fotos-status.erro {
+    color: var(--pov-erro);
+}
+
+/* Contador e botão Apagar todas */
+.fotos-barra {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 4px 0 12px;
+}
+
+.fotos-barra p {
+    color: #fff;
+    font-size: calc(15px * var(--font-scale));
+    font-weight: 600;
+}
+
+.fotos-link {
+    padding: 4px;
+    border: none;
+    background: none;
+    color: var(--pov-suave);
+    font-family: inherit;
+    font-size: calc(14px * var(--font-scale));
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.fotos-link:hover {
+    color: var(--pov-erro);
+}
+
+.fotos-vazio {
+    margin: 0 0 12px;
+    padding: 26px 12px;
+    border: 1px dashed var(--pov-linha);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--pov-suave);
+    text-align: center;
+    font-size: calc(15px * var(--font-scale));
+}
+
+/* Grade de miniaturas */
+.fotos-grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.fotos-celula {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.fotos-miniatura {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+}
+
+.fotos-miniatura img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.fotos-miniatura:hover img {
+    transform: scale(1.05);
+}
+
+.fotos-excluir {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.fotos-excluir:hover {
+    background: #df180a;
+}
+
+.fotos-miniatura:focus-visible,
+.fotos-excluir:focus-visible,
+.fotos-link:focus-visible,
+.lightbox-botao:focus-visible {
+    outline: 3px solid var(--pov-bege-claro);
+    outline-offset: 2px;
+}
+
+/* Foto ampliada */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: calc(56px + env(safe-area-inset-top, 0px)) 16px calc(24px + env(safe-area-inset-bottom, 0px));
+    background: rgba(0, 0, 0, 0.92);
+}
+
+.lightbox.aberto {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.lightbox-botao {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.lightbox-botao:hover {
+    background: var(--pov-bege);
+    color: #21170F;
+}
+
+.lightbox-fechar {
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    right: 12px;
+}
+
+.lightbox-anterior {
+    left: 10px;
+    top: 50%;
+}
+
+.lightbox-proximo {
+    right: 10px;
+    top: 50%;
+}
+
+.lightbox-contador {
+    position: absolute;
+    top: calc(22px + env(safe-area-inset-top, 0px));
+    left: 16px;
+    color: #ddd;
+    font-size: calc(14px * var(--font-scale));
+}
+
+/* ---------- Rodapé ---------- */
 footer {
     display: flex;
     flex-direction: column;
-    background-color: #FAF9F6;
-    color: #121212;
     width: 100%;
+    background-color: var(--pov-fundo);
+    color: #121212;
+}
+
+footer .linha-header {
+    border: 0;
+    border-top: 1px solid #E3DCD3;
 }
 
 .footer {
     display: flex;
-    background-color: #FAF9F6;
+    background-color: var(--pov-fundo);
     text-align: center;
 }
 
@@ -344,6 +709,12 @@ footer {
 .footer-social a {
     color: #121212;
     text-decoration: none;
+    transition: color 0.25s;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    color: #A97848;
 }
 
 .footer-text {
@@ -367,40 +738,63 @@ footer {
 }
 
 .footer-bottom {
+    padding: 10px;
     border-top: 1px solid #ccc;
-    background-color: #121212;
+    background-color: var(--pov-marrom);
     color: #fff;
     text-align: center;
-    padding: 10px;
 }
 
-/* Modo escuro */
-body.dark-mode {
-    background-color: #121212;
-    color: #f1f1f1;
+/* ---------- Modo escuro ---------- */
+/* Como no cadastro: a foto e o cartão continuam, só os controles e o rodapé escurecem */
+body.dark-mode header {
+    background: rgba(25, 22, 19, 0.88);
 }
 
-body.dark-mode header,
-body.dark-mode .nav-principal,
+body.dark-mode .logo {
+    color: #FAF9F6;
+}
+
+body.dark-mode .logo-destaque {
+    color: var(--pov-bege);
+}
+
+body.dark-mode .toggle-dark,
+body.dark-mode .font-controls button {
+    background: var(--pov-bege);
+    color: #21170F;
+}
+
+body.dark-mode .sun {
+    display: inline-block;
+}
+
+body.dark-mode .moon {
+    display: none;
+}
+
+body.dark-mode .pagina-perfil {
+    --sobreposicao: linear-gradient(
+        180deg,
+        rgba(8, 6, 4, 0.74) 0%,
+        rgba(8, 6, 4, 0.58) 45%,
+        rgba(8, 6, 4, 0.80) 100%
+    );
+}
+
+body.dark-mode .perfil {
+    background: rgba(26, 20, 15, 0.90);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
 body.dark-mode footer,
 body.dark-mode .footer {
     background-color: #1f1f1f;
     color: #f1f1f1;
 }
 
-body.dark-mode main {
-    background-color: #121212;
-    color: #f1f1f1;
-}
-
-body.dark-mode .subtitulo,
-body.dark-mode .item p {
-    color: #ccc;
-}
-
-body.dark-mode .sobre {
-    background-color: #D2A575;
-    color: #fff;
+body.dark-mode footer .linha-header {
+    border-top-color: #333;
 }
 
 body.dark-mode .footer-links a,
@@ -409,60 +803,94 @@ body.dark-mode .footer-text {
     color: #f1f1f1;
 }
 
-
-body.dark-mode .font-controls button {
-    background: #fff;
-    color: #181818;
-}
-
-body.dark-mode .font-controls button:hover {
-    background: #D2A575;
-}
-
-body.dark-mode .toggle-dark .sun {
-    display: inline-block;
-}
-
-body.dark-mode .toggle-dark .moon {
-    display: none;
-}
-
-body.dark-mode .search-barra input,
-body.dark-mode #sobremim {
-    background-color: #333;
-    color: #fff;
-    border-color: #666;
-}
-
-body.dark-mode #sobremim::placeholder {
-    color: #ccc;
-}
-
 body.dark-mode .footer-bottom {
     background-color: #090909;
-    color: #fff;
     border-top-color: #444;
 }
 
-/* Responsividade */
-@media (max-width: 400px) {
-    main {
-        padding: 15px;
+/* ---------- Responsividade ---------- */
+@media (max-width: 650px) {
+    .header_topo {
+        min-height: 68px;
+        padding: 10px 18px;
     }
 
+    .logo {
+        font-size: 22px;
+    }
+
+    .pagina-perfil {
+        padding: 24px 14px 40px;
+        background-attachment: scroll;
+    }
+
+    /* Uma coluna: foto em cima, depois os detalhes */
     .perfil {
-        grid-template-columns: 100px 1fr;
-        gap: 15px;
-        width: 100%;
-        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 26px 20px 30px;
+        border-radius: 19px;
     }
 
     .foto-perfil {
-        width: 90px;
-        height: 90px;
+        grid-column: 1;
+        grid-row: 2;
+        width: 100px;
+        height: 100px;
     }
 
-    .sobre {
-        padding: 15px;
+    .detalhes {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .compartilhar {
+        grid-row: 4;
+        justify-content: center;
+    }
+
+    .biografia {
+        grid-row: 5;
+    }
+
+    .fotos {
+        grid-row: 6;
+    }
+}
+
+@media (max-width: 400px) {
+    .header_topo {
+        padding-inline: 12px;
+    }
+
+    .font-darkmode-controls {
+        gap: 6px;
+    }
+
+    .toggle-dark,
+    .font-controls button {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+    .perfil {
+        padding: 22px 15px 26px;
+    }
+
+    .fotos-grade {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    header,
+    .fotos-area,
+    .fotos-excluir,
+    .fotos-seta,
+    .fotos-miniatura img,
+    .lightbox-botao,
+    .compartilhar .btn {
+        transition: none;
     }
 }
