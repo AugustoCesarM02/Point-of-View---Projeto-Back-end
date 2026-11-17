@@ -49,7 +49,7 @@ if ($logado) {
         <header>
             <div class="header_topo">
                 <div class="logo">
-                    <img src="../img/logo.png" alt="Point of View" onclick="window.location.href='Index.php'">
+                    <img id= "img_logo" src="../img/logo.png" alt="Point of View" onclick="window.location.href='Index.php'">
                 </div>
                 <div class="search-barra">
                     <input type="search" name="procurar" placeholder="🔍 Procure uma Imagem ou um Fotografo">
@@ -293,6 +293,7 @@ if ($logado) {
                     id="fotoSemana"
                     src="../img/destaque1.jpg"
                     alt="Foto em destaque da semana"
+                    fetchpriority="high
                 >
 
             </div>

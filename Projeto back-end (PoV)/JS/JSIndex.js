@@ -1,54 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-const toggle = document.getElementById("toggle-dark");
-const iconSun = toggle.querySelector(".sun");
-const iconMoon = toggle.querySelector(".moon");
-const logo = document.getElementById("img_logo");
 
-//Função de tema
-function applyDark(isDark) {
-    document.body.classList.toggle("dark-mode", !!isDark);
-    iconSun.style.display = isDark ? "none" : "inline-block";
-    iconMoon.style.display = isDark ? "inline-block" : "none";
-    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+    const toggle = document.getElementById("toggle-dark");
+    const iconSun = toggle.querySelector(".sun");
+    const iconMoon = toggle.querySelector(".moon");
 
-    // Muda a logo conforme o tema
     const logo = document.getElementById("img_logo");
-    if (logo) {
-        logo.src = isDark ? "img/Logo_branca.jpg" : "img/Logo_preta.jpg";
+
+    function applyDark(isDark) {
+
+        document.body.classList.toggle("dark-mode", isDark);
+
+        iconSun.style.display = isDark ? "inline-block" : "none";
+        iconMoon.style.display = isDark ? "none" : "inline-block";
+
+        toggle.setAttribute(
+            "aria-pressed",
+            isDark ? "true" : "false"
+        );
+
     }
-}
 
-const savedTheme = localStorage.getItem("infomark-dark");
-applyDark(savedTheme === "1");
-toggle.addEventListener("click", function () {
-    const nextDark = !document.body.classList.contains("dark-mode");
-    applyDark(nextDark);
-    localStorage.setItem("infomark-dark", nextDark ? "1" : "0");
-});
+    const savedTheme = localStorage.getItem("infomark-dark");
 
-//Controle de tema
-const root = document.documentElement;
-const savedFont = localStorage.getItem("infomark-fontsize");
-if (savedFont) {
-    root.style.fontSize = savedFont + "%";
-} else {
-    root.style.fontSize = "100%";
-}
+    applyDark(savedTheme === "1");
 
-function setFontSize(size) {
-    root.style.fontSize = size + "%";
-    localStorage.setItem("infomark-fontsize", size);
-}
+    toggle.addEventListener("click", function () {
 
-document.getElementById("font-inc").addEventListener("click", () => {
-    let current = parseInt(root.style.fontSize) || 100;
-    setFontSize(Math.min(current + 10, 200));
-});
+        const nextDark =
+            !document.body.classList.contains("dark-mode");
 
-document.getElementById("font-dec").addEventListener("click", () => {
-    let current = parseInt(root.style.fontSize) || 100;
-    setFontSize(Math.max(current - 10, 70));
-});
+        applyDark(nextDark);
+
+        localStorage.setItem(
+            "infomark-dark",
+            nextDark ? "1" : "0"
+        );
+    });
+
+    const root = document.documentElement;
+
+    const savedFont = localStorage.getItem("infomark-fontsize");
+
+    if (savedFont) {
+        root.style.fontSize = savedFont + "%";
+    } else {
+        root.style.fontSize = "100%";
+    }
+
+    function setFontSize(size) {
+        root.style.fontSize = size + "%";
+
+        localStorage.setItem("infomark-fontsize", size);
+    }
+
+    document.getElementById("font-inc").addEventListener("click", () => {
+
+        let current = parseInt(root.style.fontSize) || 100;
+
+        setFontSize(Math.min(current + 10, 200));
+    });
+
+    document.getElementById("font-dec").addEventListener("click", () => {
+
+        let current = parseInt(root.style.fontSize) || 100;
+
+        setFontSize(Math.max(current - 10, 70));
+    });
+
 });
 
 //Carrinho hover
@@ -319,6 +337,14 @@ const destaquesSemana = [
 ];
 
 
+window.addEventListener("load", () => {
+    [...destaques, ...destaquesSemana].forEach(item => {
+        const img = new Image();
+        img.src = item.imagem;
+    });
+});
+
+
 let destaqueSemanaAtual = 0;
 
 
@@ -349,48 +375,41 @@ const botaoSemana =
 const indicadoresSemana =
     document.querySelectorAll(".indicador-semana");
 
+fotoSemana.src = destaquesSemana[0].imagem;
 
 function mostrarDestaqueSemana(numero) {
 
     destaqueSemanaAtual = numero;
 
-    const destaque =
-        destaquesSemana[destaqueSemanaAtual];
-
+    const destaque = destaquesSemana[destaqueSemanaAtual];
 
     fotoSemana.style.opacity = "0";
 
-
     setTimeout(() => {
 
-        fotoSemana.src =
-            destaque.imagem;
+        const novaImagem = new Image();
 
-        categoriaSemana.textContent =
-            destaque.categoria;
+        novaImagem.onload = () => {
+            fotoSemana.src = destaque.imagem;
+            fotoSemana.style.opacity = "1";
+        };
 
-        tituloSemana.innerHTML =
-            destaque.titulo;
+        novaImagem.onerror = () => {
+            fotoSemana.src = destaque.imagem;
+            fotoSemana.style.opacity = "1";
+        };
 
-        descricaoSemana.textContent =
-            destaque.descricao;
+        novaImagem.src = destaque.imagem;
 
-        visualizacoesSemana.textContent =
-            destaque.visualizacoes;
-
-        curtidasSemana.textContent =
-            destaque.curtidas;
-
-        pesquisasSemana.textContent =
-            destaque.pesquisas;
-
-        botaoSemana.href =
-            destaque.link;
-
-        fotoSemana.style.opacity = "1";
+        categoriaSemana.textContent = destaque.categoria;
+        tituloSemana.innerHTML = destaque.titulo;
+        descricaoSemana.textContent = destaque.descricao;
+        visualizacoesSemana.textContent = destaque.visualizacoes;
+        curtidasSemana.textContent = destaque.curtidas;
+        pesquisasSemana.textContent = destaque.pesquisas;
+        botaoSemana.href = destaque.link;
 
     }, 250);
-
 
     indicadoresSemana.forEach(
         (indicador, indice) => {
