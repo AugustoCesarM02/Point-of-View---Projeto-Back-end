@@ -232,9 +232,16 @@ header.header-oculto {
 }
 
 /* ---------- Foto de perfil ---------- */
-.foto-perfil {
+.foto-perfil-caixa {
     grid-column: 1;
     grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.foto-perfil {
     display: block;
     width: 120px;
     height: 120px;
@@ -245,6 +252,70 @@ header.header-oculto {
     box-shadow:
         0 0 0 6px rgba(210, 165, 117, 0.18),
         0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+/* Foto de perfil editável (dono): clique ou arraste para trocar */
+.foto-perfil-area {
+    position: relative;
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.foto-perfil-area .foto-perfil {
+    transition: filter 0.25s;
+}
+
+/* + sobre a foto: só aparece ao passar o mouse (e só quando ainda não há foto própria) */
+.foto-perfil-mais {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(48, 35, 25, 0.55);
+    color: var(--pov-bege-claro);
+    font-size: calc(48px * var(--font-scale));
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+
+.foto-perfil-area:hover .foto-perfil-mais,
+.foto-perfil-area:focus-visible .foto-perfil-mais,
+.foto-perfil-area.arrastando .foto-perfil-mais {
+    opacity: 1;
+}
+
+/* Já existe foto: sem +, só o cursor de mãozinha */
+.foto-perfil-area.tem-foto .foto-perfil-mais {
+    display: none;
+}
+
+.foto-perfil-area.arrastando .foto-perfil {
+    filter: brightness(0.8);
+}
+
+.foto-perfil-area:focus-visible {
+    outline: 2px solid var(--pov-bege-claro);
+    outline-offset: 4px;
+}
+
+.foto-perfil-status {
+    min-height: 1.4em;
+    max-width: 180px;
+    color: var(--pov-suave);
+    font-size: calc(14px * var(--font-scale));
+    text-align: center;
+}
+
+.foto-perfil-status.erro {
+    color: var(--pov-erro);
 }
 
 /* ---------- Detalhes ---------- */
@@ -273,14 +344,14 @@ header.header-oculto {
     grid-row: 2;
 }
 
-.localizacao {
+.endereco {
     grid-column: 1 / -1;
     grid-row: 3;
 }
 
 .nome strong,
 .idade strong,
-.localizacao strong {
+.endereco strong {
     display: block;
     margin-bottom: 4px;
     color: var(--pov-bege-claro);
@@ -292,7 +363,7 @@ header.header-oculto {
 
 .nome p,
 .idade p,
-.localizacao p {
+.endereco p {
     color: #fff;
     font-size: calc(16px * var(--font-scale));
     overflow-wrap: anywhere;
@@ -832,9 +903,8 @@ body.dark-mode .footer-bottom {
         border-radius: 19px;
     }
 
-    .foto-perfil {
-        grid-column: 1;
-        grid-row: 2;
+    .foto-perfil,
+    .foto-perfil-area {
         width: 100px;
         height: 100px;
     }
@@ -886,6 +956,8 @@ body.dark-mode .footer-bottom {
 @media (prefers-reduced-motion: reduce) {
     header,
     .fotos-area,
+    .foto-perfil-area .foto-perfil,
+    .foto-perfil-mais,
     .fotos-excluir,
     .fotos-seta,
     .fotos-miniatura img,

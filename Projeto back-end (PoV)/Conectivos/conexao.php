@@ -24,12 +24,3 @@ function json_out($data, $code = 200) {
     echo json_encode($data);
     exit;
 }
-
-// ---------- Log do sistema ----------
-// Fica DEPOIS da sessão, para o log saber quem está logado.
-// Se a pasta Controladores não existir, o site continua funcionando sem log.
-$arquivoLog = __DIR__ . '/../Controladores/log.php';
-if (is_file($arquivoLog)) {
-    require_once $arquivoLog;
-    log_iniciar($conn, [$host, $user, $pass, $db]);
-}

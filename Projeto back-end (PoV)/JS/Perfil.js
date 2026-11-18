@@ -226,7 +226,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const URL_ENVIAR_FOTO = "../Controladores/fotos_upload.php";
     const URL_EXCLUIR_FOTO = "../Controladores/fotos_excluir.php";
     const URL_SALVAR_BIOGRAFIA = "../Controladores/biografia_salvar.php";
+    const URL_ENVIAR_FOTO_PERFIL = "../Controladores/foto_perfil_salvar.php";
+    const URL_EXCLUIR_FOTO_PERFIL = "../Controladores/foto_perfil_excluir.php";
     const LADO_MAXIMO = 1800;
+    const LADO_FOTO_PERFIL = 1024;
 
     let fotos = [];        // [{ id, url }], da mais nova para a mais antiga
     let fotoAtual = -1;
@@ -285,7 +288,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Reduz o tamanho da foto antes de enviar (economiza internet e espaço)
-    function reduzirFoto(arquivo) {
+    function reduzirFoto(arquivo, ladoMaximo) {
+        const limite = ladoMaximo || LADO_MAXIMO;
+
         return new Promise(function (resolve, reject) {
             const endereco = URL.createObjectURL(arquivo);
             const imagem = new Image();
@@ -293,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
             imagem.onload = function () {
                 const largura = imagem.naturalWidth;
                 const altura = imagem.naturalHeight;
-                const fator = Math.min(1, LADO_MAXIMO / Math.max(largura, altura));
+                const fator = Math.min(1, limite / Math.max(largura, altura));
 
                 const canvas = document.createElement("canvas");
                 canvas.width = Math.round(largura * fator);
@@ -610,6 +615,112 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ...e na hora ao apertar Enter ou sair do campo
         campoBiografia.addEventListener("change", salvarBiografia);
+    }
+
+    // Foto de perfil (só o dono troca; existe uma só: a nova substitui a anterior)
+    const areaPerfil = document.getElementById("foto-perfil-area");
+    const inputPerfil = document.getElementById("foto-perfil-input");
+    const imagemPerfil = document.getElementById("foto-perfil-img");
+    const statusPerfil = document.getElementById("foto-perfil-status");
+    const botaoRemoverPerfil = document.getElementById("foto-perfil-remover");
+
+    if (areaPerfil) {
+        let tempoMensagemPerfil = null;
+
+        // Mostra uma mensagem embaixo da foto de perfil
+        function mostrarStatusPerfil(texto, erro) {
+            statusPerfil.textContent = texto || "";
+            statusPerfil.className = "foto-perfil-status" + (erro ? " erro" : "");
+
+            clearTimeout(tempoMensagemPerfil);
+
+            if (texto && !erro && !/^Enviando|^Removendo/.test(texto)) {
+                tempoMensagemPerfil = setTimeout(function () {
+                    statusPerfil.textContent = "";
+                }, 3000);
+            }
+        }
+
+        // Troca a foto de perfil pela primeira imagem escolhida
+        async function trocarFotoPerfil(lista) {
+            const arquivo = Array.prototype.find.call(lista, function (item) {
+                return /^image\//.test(item.type);
+            });
+
+            if (!arquivo) {
+                mostrarStatusPerfil("Escolha um arquivo de imagem (JPG, PNG, WebP…).", true);
+                return;
+            }
+
+            mostrarStatusPerfil("Enviando…", false);
+
+            try {
+                const blob = await reduzirFoto(arquivo, LADO_FOTO_PERFIL);
+
+                const dados = new FormData();
+                dados.append("foto", blob, "foto.jpg");
+
+                const resposta = await enviarAoServidor(URL_ENVIAR_FOTO_PERFIL, dados);
+
+                imagemPerfil.src = resposta.url;
+                areaPerfil.classList.add("tem-foto");
+                botaoRemoverPerfil.hidden = false;
+                mostrarStatusPerfil("Foto de perfil atualizada.", false);
+            } catch (erro) {
+                mostrarStatusPerfil(erro.message || "Não foi possível enviar a foto.", true);
+            }
+        }
+
+        // Escolher a foto pelo seletor de arquivos
+        inputPerfil.addEventListener("change", function (evento) {
+            trocarFotoPerfil(evento.target.files);
+            evento.target.value = "";
+        });
+
+        // Teclado: Enter ou espaço abrem o seletor (o input fica escondido)
+        areaPerfil.addEventListener("keydown", function (evento) {
+            if (evento.key === "Enter" || evento.key === " ") {
+                evento.preventDefault();
+                inputPerfil.click();
+            }
+        });
+
+        // Arrastar e soltar a foto
+        ["dragenter", "dragover"].forEach(function (nome) {
+            areaPerfil.addEventListener(nome, function (evento) {
+                evento.preventDefault();
+                areaPerfil.classList.add("arrastando");
+            });
+        });
+
+        ["dragleave", "drop"].forEach(function (nome) {
+            areaPerfil.addEventListener(nome, function (evento) {
+                evento.preventDefault();
+                areaPerfil.classList.remove("arrastando");
+            });
+        });
+
+        areaPerfil.addEventListener("drop", function (evento) {
+            trocarFotoPerfil(evento.dataTransfer.files);
+        });
+
+        // Remover a foto (volta para a foto padrão)
+        botaoRemoverPerfil.addEventListener("click", function () {
+            if (!confirm("Remover a foto de perfil?")) {
+                return;
+            }
+
+            mostrarStatusPerfil("Removendo…", false);
+
+            enviarAoServidor(URL_EXCLUIR_FOTO_PERFIL, new FormData()).then(function (resposta) {
+                imagemPerfil.src = resposta.url;
+                areaPerfil.classList.remove("tem-foto");
+                botaoRemoverPerfil.hidden = true;
+                mostrarStatusPerfil("Foto de perfil removida.", false);
+            }).catch(function (erro) {
+                mostrarStatusPerfil(erro.message || "Não foi possível remover a foto.", true);
+            });
+        });
     }
 
     // Mostra as fotos que vieram do servidor

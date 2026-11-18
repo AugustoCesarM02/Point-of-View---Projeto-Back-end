@@ -70,7 +70,7 @@ if (!$achou) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil não encontrado</title>
-    <link rel="stylesheet" href="../CSS/Perfil.css">
+    <link rel="stylesheet" href="../CSS/Perfil.css?v=<?= (int) @filemtime(__DIR__ . '/../CSS/Perfil.css') ?>">
 </head>
 <body>
     <main class="pagina-perfil">
@@ -108,7 +108,10 @@ if (
     $foto = '../' . $fotoBanco;
 }
 
-// ---------- Detalhes (idade e localização só aparecem para o dono) ----------
+// Só mostra o botão de remover quando existe uma foto própria (não a padrão)
+$temFotoPropria = ($foto !== '../Perfil/Perfil_Sf.png');
+
+// ---------- Detalhes (idade e endereço só aparecem para o dono) ----------
 $idade = null;
 if (!empty($dataNasc)) {
     try {
@@ -120,7 +123,7 @@ if (!empty($dataNasc)) {
 
 $textoNome  = $nome ?: 'Não informado';
 $textoIdade = $idade !== null ? $idade . ' anos' : 'Não informada';
-$textoLocal = $endereco ?: 'Não informada';
+$textoEndereco = $endereco ?: 'Não informado';
 
 // ---------- Fotos da galeria (da mais nova para a mais antiga) ----------
 $fotosLista = [];
@@ -166,7 +169,7 @@ $temBiografia = ($biografia !== null && $biografia !== '');
 
     <title>Perfil<?= $ehDono ? '' : ' de ' . e($textoNome) ?></title>
 
-    <link rel="stylesheet" href="../CSS/Perfil.css">
+    <link rel="stylesheet" href="../CSS/Perfil.css?v=<?= (int) @filemtime(__DIR__ . '/../CSS/Perfil.css') ?>">
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
@@ -230,10 +233,40 @@ $temBiografia = ($biografia !== null && $biografia !== '');
                 : 'O ponto de vista de ' . e($textoNome) . '.' ?></p>
         </div>
 
-        <img
-            src="<?= e($foto) ?>"
-            alt="Foto de perfil"
-            class="foto-perfil">
+        <!--Foto de perfil (o dono troca clicando ou arrastando; os visitantes só veem)-->
+        <div class="foto-perfil-caixa">
+            <?php if ($ehDono): ?>
+            <label
+                class="foto-perfil-area<?= $temFotoPropria ? ' tem-foto' : '' ?>"
+                id="foto-perfil-area"
+                title="Alterar foto de perfil"
+                tabindex="0"
+                role="button">
+                <img
+                    src="<?= e($foto) ?>"
+                    alt="Foto de perfil"
+                    class="foto-perfil"
+                    id="foto-perfil-img">
+                <span class="foto-perfil-mais" aria-hidden="true">+</span>
+                <input type="file" id="foto-perfil-input" accept="image/*" aria-label="Alterar foto de perfil" hidden>
+            </label>
+
+            <button
+                type="button"
+                class="fotos-link"
+                id="foto-perfil-remover"
+                <?= $temFotoPropria ? '' : 'hidden' ?>>
+                Remover foto
+            </button>
+
+            <p class="foto-perfil-status" id="foto-perfil-status" role="status" aria-live="polite"></p>
+            <?php else: ?>
+            <img
+                src="<?= e($foto) ?>"
+                alt="Foto de perfil"
+                class="foto-perfil">
+            <?php endif; ?>
+        </div>
 
         <!--Detalhes-->
         <section class="detalhes">
@@ -250,9 +283,9 @@ $temBiografia = ($biografia !== null && $biografia !== '');
                 <p><?= e($textoIdade) ?></p>
             </div>
 
-            <div class="localizacao">
-                <strong>Localização</strong>
-                <p><?= e($textoLocal) ?></p>
+            <div class="endereco">
+                <strong>Endereço</strong>
+                <p><?= e($textoEndereco) ?></p>
             </div>
             <?php endif; ?>
         </section>
@@ -368,6 +401,6 @@ $temBiografia = ($biografia !== null && $biografia !== '');
         </div>
     </footer>
 
-    <script src="../JS/Perfil.js"></script>
+    <script src="../JS/Perfil.js?v=<?= (int) @filemtime(__DIR__ . '/../JS/Perfil.js') ?>"></script>
 </body>
 </html>
