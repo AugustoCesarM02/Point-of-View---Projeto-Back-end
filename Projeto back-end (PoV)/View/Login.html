@@ -1,70 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <title> Pov Login </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Point of View</title>
     <link rel="stylesheet" href="../CSS/CSSLogin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
 </head>
 <body>
-    <header>
+    <header class="cabecalho-login">
         <div class="header_topo">
-            <div class="logo">
-                <h2 id="img_logo" onclick="window.location.href='Index.php'">Point of View</h2>
-            </div>
+            <a class="logo" href="Index.php" aria-label="Voltar ao início">
+                <span>Point <span class="logo-destaque">of</span> View</span>
+            </a>
+
             <div class="font-darkmode-controls">
-                <button id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-pressed="false">
+                <button id="toggle-dark" class="toggle-dark" type="button"
+                        title="Ativar/Desativar Modo Escuro" aria-label="Alternar modo escuro"
+                        aria-pressed="false">
                     <i class="bi bi-brightness-high-fill sun"></i>
-                    <i class="bi bi-moon-stars moon"></i>
+                    <i class="bi bi-moon-stars-fill moon"></i>
                 </button>
+
                 <div class="font-controls">
-                    <button id="font-inc" title="Aumentar Fonte">
+                    <button id="font-inc" type="button" title="Aumentar fonte" aria-label="Aumentar fonte">
                         <i class="bi bi-zoom-in"></i>
                     </button>
-                    <button id="font-dec" title="Diminuir Fonte">
+                    <button id="font-dec" type="button" title="Diminuir fonte" aria-label="Diminuir fonte">
                         <i class="bi bi-zoom-out"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
-    <form id="formLogin" action="../Controladores/login_Control.php" method="post">
-        <p id="msgErro" class="msg-erro" style="display:none;color:#c0392b;text-align:center;"></p>
-        <label class="titulo">Point of view</label>
 
-        <label class="login">Login</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+    <main class="pagina-login">
+        <section class="login-container" aria-labelledby="tituloLogin">
 
-        <label class="login">Senha</label>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" minlength="6" required>
-
-        <input type="submit" id="Login" value="Login">
-        <input type="reset" id="limpar" value="Limpar tela">
-        <input type="button" id="cadastro" value="Cadastre-se" onclick="window.location.href='Cadastro.html'">
-    </form>
-    <footer>
-        <hr class="linha-header">
-        <div class="footer">
-            <lu class="footer-links">
-                <li><a href="#">teste</a></li>
-                <li><a href="#">teste</a></li>
-                <li><a href="#">teste</a></li>
-            </lu>
-            <div class="footer-text">
-                <p>PoV</p>
-                <img src="../img/logo.png" alt="imgfooter">
+            <div class="marca-formulario">
+                <span class="marca-ponto"></span>
+                <span>POINT OF VIEW</span>
             </div>
-            <div class="footer-social">
-                <a href="#">teste</a>
-                <a href="#">teste</a>
-                <a href="#">teste</a>
+
+            <div class="introducao-login">
+                <h1 id="tituloLogin">Bem-vindo de volta</h1>
+                <p>Entre na sua conta e continue compartilhando seu olhar.</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>teste</p>
-        </div>
-    </footer>
+
+            <form id="formLogin" action="../Controladores/login_Control.php" method="post">
+                <p id="msgErro" class="msg-erro" style="display:none;"></p>
+
+                <div class="grupo-campos">
+                    <div class="campo">
+                        <label class="sr-only" for="email">E-mail</label>
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        <input type="email" id="email" name="email"
+                               placeholder="Digite seu email" autocomplete="email" required>
+                    </div>
+
+                    <div class="campo">
+                        <label class="sr-only" for="senha">Senha</label>
+                        <i class="bi bi-lock" aria-hidden="true"></i>
+                        <input type="password" id="senha" name="senha"
+                               placeholder="Digite sua senha" minlength="6"
+                               autocomplete="current-password" required>
+                    </div>
+                </div>
+
+                <input type="submit" id="Login" class="btn-login" value="Login">
+                <input type="reset" id="limpar" class="btn-limpar" value="Limpar tela">
+
+                <p class="cadastro-link">
+                    Ainda não possui uma conta?
+                    <a href="Cadastro.html">Cadastre-se</a>
+                </p>
+            </form>
+        </section>
+    </main>
+
     <script src="../JS/JSLogin.js"></script>
 </body>
 </html>
-
