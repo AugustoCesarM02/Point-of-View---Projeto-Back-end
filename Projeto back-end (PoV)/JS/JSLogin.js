@@ -53,18 +53,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-// Botão do olho: mostra ou esconde a senha digitada
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".mostrar-senha").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            const campo = document.getElementById(botao.dataset.target);
-            const icone = botao.querySelector("i");
-            const mostrar = campo.type === "password";
-
-            campo.type = mostrar ? "text" : "password";
-            icone.className = mostrar ? "bi bi-eye-slash" : "bi bi-eye";
-            botao.setAttribute("aria-label", mostrar ? "Ocultar senha" : "Mostrar senha");
-        });
-    });
-});

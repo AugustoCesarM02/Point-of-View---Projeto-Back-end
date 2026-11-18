@@ -1,10 +1,8 @@
-/* ==========================================================
-   Login — mesma identidade das páginas Perfil e Cadastro:
-   cabeçalho fixo e rodapé do Perfil, fundo fotográfico com
-   sobreposição, cartão marrom translúcido e campos do Cadastro.
-   Os textos usam rem, então os botões de fonte do cabeçalho
-   (JSLogin.js) aumentam e diminuem tudo.
-   ========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 :root {
     --pov-fundo: #FAF9F6;
@@ -12,15 +10,6 @@
     --pov-bege-claro: #E8C9A5;
     --pov-marrom: #302319;
     --pov-texto: #FAF9F6;
-    --pov-suave: #D9CABC;
-    --pov-linha: rgba(255, 255, 255, 0.16);
-    --pov-erro: #ff9b91;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -29,24 +18,21 @@ html {
 
 body {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     font-family: "Segoe UI", Arial, sans-serif;
-    color: #171411;
+    color: #FAF9F6;
     background: var(--pov-fundo);
-    transition: background-color 0.3s, color 0.3s;
 }
 
-/* ---------- Cabeçalho (igual ao do Perfil) ---------- */
 .cabecalho-login {
-    position: sticky;
+    position: absolute;
+    z-index: 10;
     top: 0;
-    z-index: 100;
+    left: 0;
+    width: 100%;
     background: rgba(250, 249, 246, 0.83);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
 }
 
 .header_topo {
@@ -61,7 +47,7 @@ body {
 .logo {
     color: #171411;
     text-decoration: none;
-    font-size: 1.7rem;
+    font-size: 27px;
     font-weight: 750;
     letter-spacing: -1.2px;
     transition: opacity 0.25s ease;
@@ -116,40 +102,37 @@ body {
     gap: 6px;
 }
 
-/* ---------- Fundo fotográfico ---------- */
 .pagina-login {
-    --sobreposicao: linear-gradient(
-        180deg,
-        rgba(15, 12, 9, 0.55) 0%,
-        rgba(15, 12, 9, 0.32) 45%,
-        rgba(15, 12, 9, 0.60) 100%
-    );
-
-    flex: 1;
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px 60px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 105px 7% 45px;
 
     background-image:
-        var(--sobreposicao),
+        linear-gradient(
+            90deg,
+            rgba(15, 12, 9, 0.56) 0%,
+            rgba(15, 12, 9, 0.30) 48%,
+            rgba(15, 12, 9, 0.12) 100%
+        ),
         url("../img/Capa Login.jpg");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-/* ---------- Cartão do login ---------- */
 .login-container {
-    width: min(100%, 440px);
-    padding: 34px 38px 32px;
+    width: min(100%, 535px);
+    padding: 30px 34px;
     color: var(--pov-texto);
 
     background: rgba(48, 35, 25, 0.86);
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 24px;
+
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
 
     backdrop-filter: blur(13px);
@@ -161,9 +144,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 9px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--pov-bege-claro);
-    font-size: 0.7rem;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
 }
@@ -177,24 +160,6 @@ body {
     box-shadow: 0 0 12px rgba(210, 165, 117, 0.8);
 }
 
-/* Medalhão com a mesma moldura da foto de perfil */
-.login-avatar {
-    width: 88px;
-    height: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    border: 3px solid var(--pov-bege);
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--pov-bege-claro);
-    font-size: 2.6rem;
-    box-shadow:
-        0 0 0 6px rgba(210, 165, 117, 0.18),
-        0 10px 26px rgba(0, 0, 0, 0.35);
-}
-
 .introducao-login {
     text-align: center;
     margin-bottom: 24px;
@@ -203,28 +168,23 @@ body {
 .introducao-login h1 {
     margin-bottom: 8px;
     color: #fff;
-    font-size: clamp(1.6rem, 3vw, 1.95rem);
+    font-size: clamp(25px, 3vw, 31px);
     font-weight: 700;
 }
 
 .introducao-login p {
     color: #E8DED2;
-    font-size: 0.9rem;
+    font-size: 14px;
     line-height: 1.5;
 }
 
 .msg-erro {
     margin-bottom: 14px;
-    padding: 10px 14px;
-    color: var(--pov-erro);
-    font-size: 0.85rem;
+    color: #ff9b91;
+    font-size: 13px;
     text-align: center;
-    background: rgba(255, 155, 145, 0.1);
-    border: 1px solid rgba(255, 155, 145, 0.35);
-    border-radius: 12px;
 }
 
-/* ---------- Campos (como no Cadastro) ---------- */
 .grupo-campos {
     display: grid;
     grid-template-columns: 1fr;
@@ -256,7 +216,7 @@ body {
 .campo > i {
     flex: 0 0 auto;
     color: #F6E9DA;
-    font-size: 1.05rem;
+    font-size: 17px;
 }
 
 .campo input {
@@ -268,7 +228,7 @@ body {
     background: transparent;
     color: #fff;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 13px;
 }
 
 .campo input::placeholder {
@@ -277,28 +237,8 @@ body {
 }
 
 .campo input.erro {
-    outline: 1px solid var(--pov-erro);
+    outline: 1px solid #ff9b91;
     border-radius: 5px;
-}
-
-.mostrar-senha {
-    flex: 0 0 auto;
-    width: 32px;
-    height: 32px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: #F6E9DA;
-    font-size: 1.05rem;
-    cursor: pointer;
-    transition: background-color 0.25s;
-}
-
-.mostrar-senha:hover {
-    background: rgba(255, 255, 255, 0.15);
 }
 
 .sr-only {
@@ -313,7 +253,6 @@ body {
     border: 0;
 }
 
-/* ---------- Botões ---------- */
 .btn-login {
     width: 100%;
     min-height: 53px;
@@ -328,7 +267,7 @@ body {
     color: #21170F;
 
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 750;
     cursor: pointer;
     transition: 0.25s ease;
@@ -340,144 +279,48 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* "Limpar tela": discreto, no estilo dos links do Perfil */
 .btn-limpar {
-    display: block;
-    margin: 12px auto 0;
-    padding: 4px;
-    border: none;
-    background: none;
-    color: var(--pov-suave);
-    font-family: inherit;
-    font-size: 0.875rem;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 0.25s;
-}
-
-.btn-limpar:hover {
-    color: var(--pov-erro);
-}
-
-/* Divisória e chamada para o cadastro */
-.login-divisor {
-    margin: 22px 0 18px;
-    border: 0;
-    border-top: 1px solid var(--pov-linha);
-}
-
-.cadastro-texto {
-    margin-bottom: 12px;
-    text-align: center;
-    color: #E8DED2;
-    font-size: 0.85rem;
-}
-
-.btn-cadastro {
     width: 100%;
-    min-height: 47px;
+    min-height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    margin-top: 12px;
 
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 14px;
     background: transparent;
     color: var(--pov-bege-claro);
 
-    font-size: 0.9rem;
+    font-family: inherit;
+    font-size: 14px;
     font-weight: 700;
-    text-decoration: none;
+    cursor: pointer;
     transition: 0.25s ease;
 }
 
-.btn-cadastro:hover {
+.btn-limpar:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: var(--pov-bege-claro);
 }
 
-.btn-login:focus-visible,
-.btn-limpar:focus-visible,
-.btn-cadastro:focus-visible,
-.mostrar-senha:focus-visible,
-.toggle-dark:focus-visible,
-.font-controls button:focus-visible {
-    outline: 2px solid var(--pov-bege-claro);
-    outline-offset: 2px;
-}
-
-/* ---------- Rodapé (igual ao do Perfil) ---------- */
-footer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--pov-fundo);
-    color: #121212;
-}
-
-footer .linha-header {
-    border: 0;
-    border-top: 1px solid #E3DCD3;
-}
-
-.footer {
-    display: flex;
-    background-color: var(--pov-fundo);
+.cadastro-link {
+    margin-top: 19px;
     text-align: center;
+    color: #E8DED2;
+    font-size: 13px;
 }
 
-.footer-links {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    list-style: none;
-}
-
-.footer-links a,
-.footer-social a {
-    color: #121212;
+.cadastro-link a {
+    color: var(--pov-bege-claro);
+    font-weight: 700;
     text-decoration: none;
-    transition: color 0.25s;
 }
 
-.footer-links a:hover,
-.footer-social a:hover {
-    color: #A97848;
+.cadastro-link a:hover {
+    text-decoration: underline;
 }
 
-.footer-text {
-    flex: 1;
-    color: #121212;
-}
-
-.footer-text img {
-    max-width: 100px;
-    height: auto;
-}
-
-.footer-social {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-}
-
-.footer-bottom {
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: var(--pov-marrom);
-    color: #fff;
-    text-align: center;
-}
-
-/* ---------- Modo escuro ---------- */
 body.dark-mode .cabecalho-login {
     background: rgba(25, 22, 19, 0.88);
 }
@@ -504,28 +347,6 @@ body.dark-mode .moon {
     display: none;
 }
 
-body.dark-mode footer,
-body.dark-mode .footer {
-    background-color: #1f1f1f;
-    color: #f1f1f1;
-}
-
-body.dark-mode footer .linha-header {
-    border-top-color: #333;
-}
-
-body.dark-mode .footer-links a,
-body.dark-mode .footer-social a,
-body.dark-mode .footer-text {
-    color: #f1f1f1;
-}
-
-body.dark-mode .footer-bottom {
-    background-color: #090909;
-    border-top-color: #444;
-}
-
-/* ---------- Telas pequenas ---------- */
 @media (max-width: 650px) {
     .header_topo {
         min-height: 68px;
@@ -533,23 +354,23 @@ body.dark-mode .footer-bottom {
     }
 
     .logo {
-        font-size: 1.4rem;
+        font-size: 22px;
     }
 
     .pagina-login {
-        padding: 28px 14px 40px;
+        justify-content: center;
+        padding: 90px 14px 25px;
         background-attachment: scroll;
+        background-position: center;
     }
 
     .login-container {
-        padding: 28px 22px 26px;
+        padding: 25px 20px;
         border-radius: 19px;
     }
 
-    .footer {
-        flex-direction: column;
-        gap: 12px;
-        padding: 14px 0;
+    .grupo-campos {
+        gap: 10px;
     }
 }
 
@@ -570,17 +391,6 @@ body.dark-mode .footer-bottom {
     }
 
     .login-container {
-        padding: 24px 16px 22px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .toggle-dark,
-    .font-controls button,
-    .btn-login,
-    .btn-cadastro,
-    .campo,
-    .logo {
-        transition: none;
+        padding: 22px 15px;
     }
 }

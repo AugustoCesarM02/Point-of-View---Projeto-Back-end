@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pov Login</title>
+    <title>Login | Point of View</title>
     <link rel="stylesheet" href="../CSS/CSSLogin.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
 </head>
 <body>
     <header class="cabecalho-login">
         <div class="header_topo">
             <a class="logo" href="Index.php" aria-label="Voltar ao início">
-                Point <span class="logo-destaque">of</span> View
+                <span>Point <span class="logo-destaque">of</span> View</span>
             </a>
 
             <div class="font-darkmode-controls">
-                <button type="button" id="toggle-dark" class="toggle-dark" title="Ativar/Desativar Modo Escuro" aria-label="Alternar modo escuro" aria-pressed="false">
+                <button id="toggle-dark" class="toggle-dark" type="button"
+                        title="Ativar/Desativar Modo Escuro" aria-label="Alternar modo escuro"
+                        aria-pressed="false">
                     <i class="bi bi-brightness-high-fill sun"></i>
                     <i class="bi bi-moon-stars-fill moon"></i>
                 </button>
+
                 <div class="font-controls">
-                    <button type="button" id="font-inc" title="Aumentar Fonte" aria-label="Aumentar tamanho da fonte">
+                    <button id="font-inc" type="button" title="Aumentar fonte" aria-label="Aumentar fonte">
                         <i class="bi bi-zoom-in"></i>
                     </button>
-                    <button type="button" id="font-dec" title="Diminuir Fonte" aria-label="Diminuir tamanho da fonte">
+                    <button id="font-dec" type="button" title="Diminuir fonte" aria-label="Diminuir fonte">
                         <i class="bi bi-zoom-out"></i>
                     </button>
                 </div>
@@ -32,51 +35,47 @@
     </header>
 
     <main class="pagina-login">
-        <form class="login-container" id="formLogin" action="../Controladores/login_Control.php" method="post">
+        <section class="login-container" aria-labelledby="tituloLogin">
+
             <div class="marca-formulario">
                 <span class="marca-ponto"></span>
                 <span>POINT OF VIEW</span>
             </div>
 
-            <div class="login-avatar" aria-hidden="true">
-                <i class="bi bi-person-fill"></i>
-            </div>
-
             <div class="introducao-login">
-                <h1>Bem-vindo de volta</h1>
-                <p>Entre para compartilhar o seu ponto de vista.</p>
+                <h1 id="tituloLogin">Bem-vindo de volta</h1>
+                <p>Entre na sua conta e continue compartilhando seu olhar.</p>
             </div>
 
-            <p id="msgErro" class="msg-erro" style="display:none;" role="alert"></p>
+            <form id="formLogin" action="../Controladores/login_Control.php" method="post">
+                <p id="msgErro" class="msg-erro" style="display:none;"></p>
 
-            <div class="grupo-campos">
-                <div class="campo">
-                    <i class="bi bi-envelope" aria-hidden="true"></i>
-                    <label class="sr-only" for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu email" autocomplete="email" required>
+                <div class="grupo-campos">
+                    <div class="campo">
+                        <label class="sr-only" for="email">E-mail</label>
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        <input type="email" id="email" name="email"
+                               placeholder="Digite seu email" autocomplete="email" required>
+                    </div>
+
+                    <div class="campo">
+                        <label class="sr-only" for="senha">Senha</label>
+                        <i class="bi bi-lock" aria-hidden="true"></i>
+                        <input type="password" id="senha" name="senha"
+                               placeholder="Digite sua senha" minlength="6"
+                               autocomplete="current-password" required>
+                    </div>
                 </div>
 
-                <div class="campo">
-                    <i class="bi bi-lock" aria-hidden="true"></i>
-                    <label class="sr-only" for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" minlength="6" autocomplete="current-password" required>
-                    <button class="mostrar-senha" type="button" data-target="senha" aria-label="Mostrar senha">
-                        <i class="bi bi-eye" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
+                <input type="submit" id="Login" class="btn-login" value="Login">
+                <input type="reset" id="limpar" class="btn-limpar" value="Limpar tela">
 
-            <button type="submit" id="Login" class="btn-login">
-                Entrar
-                <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </button>
-            <button type="reset" id="limpar" class="btn-limpar">Limpar tela</button>
-
-            <hr class="login-divisor">
-
-            <p class="cadastro-texto">Ainda não faz parte?</p>
-            <a class="btn-cadastro" href="Cadastro.html">Criar minha conta</a>
-        </form>
+                <p class="cadastro-link">
+                    Ainda não possui uma conta?
+                    <a href="Cadastro.html">Cadastre-se</a>
+                </p>
+            </form>
+        </section>
     </main>
 
     <script src="../JS/JSLogin.js"></script>
