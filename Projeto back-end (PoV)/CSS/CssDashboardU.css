@@ -914,6 +914,74 @@ body.dark-mode .paginacao a:hover {
 
 
 /* ==========================================================
+   Mensagem de retorno (promover / excluir)
+   ========================================================== */
+
+.aviso {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-left: 5px solid var(--cobre);
+    border-radius: 16px;
+    background-color: var(--superficie);
+    color: var(--texto);
+    box-shadow: var(--sombra);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    animation: modalEntra 0.22s ease-out;
+}
+
+.aviso > i {
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.aviso > span {
+    flex: 1;
+}
+
+.aviso--sucesso {
+    border-left-color: #2e7d4f;
+}
+
+.aviso--sucesso > i {
+    color: #2e7d4f;
+}
+
+.aviso--aviso > i {
+    color: var(--cobre);
+}
+
+.aviso--erro {
+    border-left-color: var(--perigo);
+}
+
+.aviso--erro > i {
+    color: var(--perigo);
+}
+
+.aviso-fechar {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--texto-suave);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.aviso-fechar:hover {
+    background-color: var(--hover-menu);
+}
+
+
+/* ==========================================================
    Responsivo
    ========================================================== */
 

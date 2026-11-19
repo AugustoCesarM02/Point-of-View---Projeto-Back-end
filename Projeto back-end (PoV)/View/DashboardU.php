@@ -32,6 +32,11 @@ $nomeAdmin = $nomeBanco ?: 'Administrador';
 
 $_SESSION['csrf'] = $_SESSION['csrf'] ?? bin2hex(random_bytes(16));
 
+// Mensagem deixada pelos controladores (promover_usuario.php e excluir_usuario.php).
+// É lida uma vez só: ao recarregar a página ela some.
+$flash = $_SESSION['flash_dashboard'] ?? null;
+unset($_SESSION['flash_dashboard']);
+
 
 /* FUNÇÕES AUXILIARES */
 
@@ -199,6 +204,20 @@ foreach ($usuarios as $u) {
             </section>
 
             <div class="conteudo">
+
+                <?php if (is_array($flash) && !empty($flash['texto'])):
+                    $tipoFlash  = in_array($flash['tipo'] ?? '', ['sucesso', 'aviso', 'erro'], true) ? $flash['tipo'] : 'aviso';
+                    $iconeFlash = ['sucesso' => 'bi-check-circle-fill', 'aviso' => 'bi-info-circle-fill', 'erro' => 'bi-exclamation-triangle-fill'][$tipoFlash];
+                ?>
+                <div class="aviso aviso--<?= e($tipoFlash) ?>" role="<?= $tipoFlash === 'erro' ? 'alert' : 'status' ?>">
+                    <i class="bi <?= e($iconeFlash) ?>" aria-hidden="true"></i>
+                    <span><?= e($flash['texto']) ?></span>
+                    <button type="button" class="aviso-fechar" data-fechar-aviso aria-label="Fechar mensagem">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <?php endif; ?>
+
                 <section class="cartao">
 
                     <div class="barra-ferramentas">
@@ -279,7 +298,7 @@ foreach ($usuarios as $u) {
 
                                             <button type="button" class="btn-icone btn-icone--promover"
                                                     data-acao="promover"
-                                                    data-url="../Conectivos/promover_usuario.php"
+                                                    data-url="../Controladores/promover_usuario.php"
                                                     data-id="<?= e($id) ?>" data-nome="<?= e($nome) ?>"
                                                     title="<?= $ehAdmin ? 'Já é administrador' : 'Promover a administrador' ?>"
                                                     aria-label="Promover <?= e($nome) ?>"
@@ -289,7 +308,7 @@ foreach ($usuarios as $u) {
 
                                             <button type="button" class="btn-icone btn-icone--excluir"
                                                     data-acao="excluir"
-                                                    data-url="../Conectivos/excluir_usuario.php"
+                                                    data-url="../Controladores/excluir_usuario.php"
                                                     data-id="<?= e($id) ?>" data-nome="<?= e($nome) ?>"
                                                     title="<?= $ehVoce ? 'Você não pode excluir a própria conta' : 'Excluir usuário' ?>"
                                                     aria-label="Excluir <?= e($nome) ?>"

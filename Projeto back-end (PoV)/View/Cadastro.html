@@ -53,6 +53,7 @@
             <form id="formCadastro"
                   action="../Controladores/cadastro_Control.php"
                   method="post"
+                  enctype="multipart/form-data"
                   novalidate>
 
                 <div class="grupo-campos">
@@ -60,14 +61,18 @@
                         <label class="sr-only" for="nome">Nome completo</label>
                         <i class="bi bi-person" aria-hidden="true"></i>
                         <input type="text" id="nome" name="nome"
-                               placeholder="Nome completo" autocomplete="name" required>
+                               placeholder="Nome completo (mínimo 3 letras)" autocomplete="name" required>
                     </div>
 
-                    <div class="campo">
-                        <label class="sr-only" for="email">E-mail</label>
-                        <i class="bi bi-envelope" aria-hidden="true"></i>
-                        <input type="email" id="email" name="email"
-                               placeholder="Seu e-mail" autocomplete="email" required>
+                    <div class="campo-bloco campo-largo">
+                        <div class="campo">
+                            <label class="sr-only" for="email">E-mail</label>
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
+                            <input type="email" id="email" name="email"
+                                   placeholder="Seu e-mail (ex.: nome@email.com)" autocomplete="email"
+                                   aria-describedby="avisoEmail" required>
+                        </div>
+                        <p class="campo-aviso" id="avisoEmail" role="status" aria-live="polite" hidden></p>
                     </div>
 
                     <div class="campo">
@@ -147,9 +152,37 @@
                             <i class="bi bi-eye" aria-hidden="true"></i>
                         </button>
                     </div>
+
+                    <!-- Foto de perfil (opcional): clique ou arraste, igual ao Perfil.php -->
+                    <div class="campo-largo bloco-foto">
+                        <label class="foto-cadastro" id="fotoArea" for="fotoInput"
+                               tabindex="0" role="button"
+                               aria-label="Escolher foto de perfil (opcional)">
+                            <span class="foto-cadastro__preview">
+                                <img id="fotoPreview" src="../Perfil/Perfil_Sf.png" alt="Prévia da foto de perfil">
+                                <span class="foto-cadastro__mais" aria-hidden="true">+</span>
+                            </span>
+
+                            <span class="foto-cadastro__texto">
+                                <strong>Foto de perfil <em>(opcional)</em></strong>
+                                <small id="fotoDica">Clique ou arraste uma imagem aqui. JPG, PNG ou WebP.</small>
+                            </span>
+
+                            <span class="foto-cadastro__botao" id="fotoBotao">
+                                <i class="bi bi-camera" aria-hidden="true"></i>
+                                <span id="fotoBotaoTexto">Escolher foto</span>
+                            </span>
+
+                            <input type="file" id="fotoInput" name="foto" accept="image/*" hidden>
+                        </label>
+
+                        <button type="button" class="foto-cadastro__remover" id="fotoRemover" hidden>
+                            <i class="bi bi-x-circle" aria-hidden="true"></i> Remover foto
+                        </button>
+                    </div>
                 </div>
 
-                <p class="aviso-campos">Os campos marcados como opcionais podem ser preenchidos depois.</p>
+                <p class="aviso-campos">Só nome, e-mail e senha são obrigatórios. O restante pode ser preenchido depois.</p>
 
                 <button type="submit" id="cadastrar" class="btn-cadastrar">
                     Criar minha conta
@@ -164,37 +197,19 @@
         </section>
     </main>
 
-    <!-- Modal de erros de validação -->
+    <!-- Janela (pop-up) com a lista do que deu errado -->
     <div id="modalErros" class="modal-erro" aria-hidden="true">
         <div class="modal-erro__overlay" id="modalOverlay"></div>
-        <div class="modal-erro__dialog" role="dialog" aria-labelledby="modalErrosTitle" aria-modal="true">
-            <h3 id="modalErrosTitle">Erros no formulário</h3>
-            <p>Verifique os campos abaixo:</p>
+        <div class="modal-erro__dialog" role="alertdialog" aria-modal="true"
+             aria-labelledby="modalErrosTitle" aria-describedby="modalErrosDesc">
+            <div class="modal-erro__icone" aria-hidden="true"><i class="bi bi-exclamation-triangle-fill"></i></div>
+            <h3 id="modalErrosTitle">Não foi possível criar a conta</h3>
+            <p id="modalErrosDesc">Corrija os itens abaixo e tente novamente:</p>
             <ul id="modalErrosList"></ul>
-            <div style="text-align:right; margin-top:12px;">
-                <button id="modalFechar" class="btn">Fechar</button>
-            </div>
+            <button type="button" id="modalFechar" class="btn-modal">Entendi</button>
         </div>
-        
-        <div class="footer-bottom">
-            <p>teste</p>
-        </div>
-    </footer>
+    </div>
+
     <script src="../JS/JSCadastro.js" defer></script>
-    <script>
-        const mensagensCadastro = {
-            dados: 'Verifique nome, e-mail e senha (mínimo de 8 caracteres, iguais nos dois campos).',
-            email: 'Este e-mail já está cadastrado.',
-            cpf: 'CPF inválido.',
-            cpf_duplicado: 'Este CPF já está cadastrado.',
-            data: 'Data de nascimento inválida.',
-            telefone: 'Telefone inválido (use DDD + número).',
-            foto: 'Não foi possível processar a foto de perfil. Tente outra imagem.',
-            foto_tipo: 'Formato de foto não permitido. Use JPG, PNG ou WebP.',
-            foto_tamanho: 'A foto de perfil deve ter no máximo 2 MB.'
-        };
-        const erroCadastro = new URLSearchParams(window. location.search).get('erro');
-        if (erroCadastro) alert(mensagensCadastro[erroCadastro] || 'Não foi possível realizar o cadastro. Confira os dados.');
-        </script>
-    </body>
+</body>
 </html>

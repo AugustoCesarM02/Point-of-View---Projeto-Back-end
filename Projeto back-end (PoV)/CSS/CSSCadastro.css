@@ -254,16 +254,36 @@ body {
     color-scheme: dark;
 }
 
-.campo input.erro,
-.campo select.erro {
-    outline: 1px solid #ff9b91;
-    border-radius: 5px;
+.campo.campo--erro {
+    background: rgba(255, 155, 145, 0.14);
+    border-color: #ff9b91;
 }
 
-.campo input.valido,
-.campo select.valido {
-    outline: 1px solid #9bc99b;
-    border-radius: 5px;
+.campo.campo--ok {
+    border-color: rgba(155, 201, 155, 0.75);
+}
+
+/* Campo + aviso logo abaixo (ex.: "e-mail já está em uso") */
+.campo-bloco {
+    min-width: 0;
+}
+
+.campo-aviso {
+    margin: 7px 4px 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.campo-aviso--erro {
+    color: #ffb4ab;
+}
+
+.campo-aviso--ok {
+    color: #a9d9a9;
+}
+
+.campo-aviso--neutro {
+    color: #E8DED2;
 }
 
 .sr-only {
@@ -369,47 +389,290 @@ body {
 .modal-erro__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.68);
+    background: rgba(15, 12, 9, 0.7);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .modal-erro__dialog {
     position: relative;
     z-index: 1;
-    width: min(100%, 430px);
-    padding: 27px;
-    border-radius: 18px;
+    width: min(100%, 440px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 28px 28px 24px;
+    border-radius: 20px;
+    border-top: 5px solid #C75B4E;
     background: #FAF9F6;
     color: #21170F;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+    animation: modal-erro-entrada 0.22s ease-out;
+}
+
+@keyframes modal-erro-entrada {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.modal-erro__icone {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: #F8E3E0;
+    color: #B3382B;
+    font-size: 22px;
 }
 
 .modal-erro__dialog h3 {
-    margin-bottom: 9px;
+    margin-bottom: 6px;
     color: #302319;
+    font-size: 19px;
 }
 
 .modal-erro__dialog p {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    color: #5B4A3C;
     font-size: 14px;
 }
 
 .modal-erro__dialog ul {
-    padding-left: 20px;
-    color: #7B392F;
-    font-size: 13px;
-    line-height: 1.7;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+.modal-erro__dialog li {
+    position: relative;
+    padding: 9px 12px 9px 34px;
+    border-radius: 10px;
+    background: #FBEFED;
+    color: #7B2E24;
+    font-size: 13.5px;
+    line-height: 1.45;
+}
+
+.modal-erro__dialog li::before {
+    content: "!";
+    position: absolute;
+    top: 10px;
+    left: 11px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #B3382B;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .btn-modal {
     display: block;
-    margin: 18px 0 0 auto;
-    padding: 10px 20px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px 20px;
     border: 0;
-    border-radius: 9px;
-    background: #D2A575;
-    color: #21170F;
+    border-radius: 12px;
+    background: #302319;
+    color: #FAF9F6;
+    font-family: inherit;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn-modal:hover,
+.btn-modal:focus-visible {
+    background: #A97848;
+    outline: none;
+}
+
+/* FOTO DE PERFIL (opcional): mesma ideia do Perfil.php, no tema do cadastro */
+.bloco-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.foto-cadastro {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px dashed rgba(232, 201, 165, 0.6);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.foto-cadastro:hover,
+.foto-cadastro:focus-visible,
+.foto-cadastro.arrastando {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: var(--pov-bege-claro);
+    outline: none;
+}
+
+.foto-cadastro:focus-visible {
+    box-shadow: 0 0 0 2px rgba(210, 165, 117, 0.3);
+}
+
+.foto-cadastro.foto-cadastro--erro {
+    border-color: #ff9b91;
+    background: rgba(255, 155, 145, 0.14);
+}
+
+.foto-cadastro__preview {
+    position: relative;
+    flex: 0 0 auto;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+}
+
+.foto-cadastro__preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    border: 2px solid var(--pov-bege);
+    box-shadow:
+        0 0 0 4px rgba(210, 165, 117, 0.18),
+        0 6px 16px rgba(0, 0, 0, 0.35);
+    transition: filter 0.25s ease;
+}
+
+/* + sobre a foto: só aparece ao passar o mouse e enquanto não há foto escolhida (igual ao perfil) */
+.foto-cadastro__mais {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(48, 35, 25, 0.55);
+    color: var(--pov-bege-claro);
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.foto-cadastro:hover .foto-cadastro__mais,
+.foto-cadastro:focus-visible .foto-cadastro__mais,
+.foto-cadastro.arrastando .foto-cadastro__mais {
+    opacity: 1;
+}
+
+.foto-cadastro.tem-foto .foto-cadastro__mais {
+    display: none;
+}
+
+.foto-cadastro.arrastando .foto-cadastro__preview img {
+    filter: brightness(0.8);
+}
+
+.foto-cadastro__texto {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.foto-cadastro__texto strong {
+    color: #fff;
+    font-size: 13.5px;
+}
+
+.foto-cadastro__texto em {
+    color: #D9CABC;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.foto-cadastro__texto small {
+    color: #D9CABC;
+    font-size: 11.5px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.foto-cadastro__botao {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    border: 1px solid rgba(232, 201, 165, 0.55);
+    border-radius: 11px;
+    background: rgba(210, 165, 117, 0.2);
+    color: var(--pov-bege-claro);
+    font-size: 12.5px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.foto-cadastro:hover .foto-cadastro__botao,
+.foto-cadastro:focus-visible .foto-cadastro__botao {
+    background: var(--pov-bege);
+    border-color: var(--pov-bege);
+    color: #21170F;
+}
+
+.foto-cadastro__remover {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border: 0;
+    background: transparent;
+    color: #E8DED2;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.foto-cadastro__remover[hidden] {
+    display: none;
+}
+
+.foto-cadastro__remover:hover,
+.foto-cadastro__remover:focus-visible {
+    color: var(--pov-bege-claro);
+    text-decoration: underline;
+}
+
+/* Botão ocupado (verificando / criando a conta) */
+.btn-cadastrar:disabled {
+    opacity: 0.75;
+    cursor: progress;
+    transform: none;
+    box-shadow: none;
 }
 
 /* MODO ESCURO: preserva o controle existente sem prejudicar a foto */
@@ -469,6 +732,29 @@ body.dark-mode .moon {
 
     .campo-largo {
         grid-column: auto;
+    }
+
+    .foto-cadastro {
+        flex-wrap: wrap;
+    }
+
+    .foto-cadastro__texto {
+        flex-basis: calc(100% - 90px);
+    }
+
+    .foto-cadastro__botao {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-erro__dialog {
+        padding: 24px 20px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-erro__dialog {
+        animation: none;
     }
 }
 

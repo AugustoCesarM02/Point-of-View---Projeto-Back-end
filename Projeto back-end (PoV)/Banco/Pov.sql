@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
   FOREIGN KEY (tipo_id) REFERENCES tipos_usuario(tipo_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO usuarios (id_usuario, nome, email, senha, tipo_id) VALUES (1, 'Admin', 'admin@email.com', '$2y$10$ZsRfDt8o8Jg3kz0GS0R1TOKTHkkP/.EKfch4udslkAQX8L73Ph.cy', 2) ON DUPLICATE KEY UPDATE tipo_id = 2;
+
 -- Fotos da galeria de cada usuário (os arquivos ficam em Perfil/fotos/)
 CREATE TABLE IF NOT EXISTS fotos (
   id_foto INT AUTO_INCREMENT PRIMARY KEY,

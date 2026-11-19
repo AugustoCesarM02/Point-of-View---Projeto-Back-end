@@ -124,6 +124,13 @@
     });
 
 
+    /* ---------- Mensagem de retorno (promover / excluir) ---------- */
+    document.addEventListener('click', (evento) => {
+        const fechar = evento.target.closest('[data-fechar-aviso]');
+        if (fechar) fechar.closest('.aviso').remove();
+    });
+
+
     /* ---------- Números da faixa: contagem ao abrir a página ---------- */
     const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
